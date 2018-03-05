@@ -1,0 +1,231 @@
+---
+layout: post
+title: Nuxt.js教程之 —— Nuxt的路由生成规则
+date: 2017-01-15 18:58:06 +0800
+description: Nuxt.js 帮助我们集成了路由的功能，只要掌握一些基本要点，就能创造出自己想要的效果，这一篇文章主要就是讲nuxt的几种路由规则。  基本路由  nuxt.js 会根据你项目目录下 pages 文件夹内的 *.vue文件来自动生成 vue-router 路由配置。  例如如下目录  pages/ --| team/ -----| index.vue -----| about.vue --| index.vue 会自动生成  router: {   routes: [     {       name: 'index',       path: '/',       component: '
+img:
+tags: [nuxt,nuxt.js路由,nuxt教程,nuxtjs教程,nuxt.js]
+---
+
+Nuxt.js 帮助我们集成了路由的功能，只要掌握一些基本要点，就能创造出自己想要的效果，这一篇文章主要就是讲nuxt的几种路由规则。
+
+## 基本路由
+`nuxt.js` 会根据你项目目录下 `pages` 文件夹内的 `*.vue`文件来自动生成 [vue-router](https://github.com/vuejs/vue-router) 路由配置。
+
+例如如下目录
+```
+pages/
+--| team/
+-----| index.vue
+-----| about.vue
+--| index.vue
+```
+会自动生成
+```js
+router: {
+  routes: [
+    {
+      name: 'index',
+      path: '/',
+      component: 'pages/index.vue'
+    },
+    {
+      name: 'team',
+      path: '/team',
+      component: 'pages/team/index.vue'
+    },
+    {
+      name: 'team-about',
+      path: '/team/about',
+      component: 'pages/team/about.vue'
+    }
+  ]
+}
+```
+
+## 动态路由
+如果你的`vue`文件名由 `_` 下划线开头，那么nuxt会根据路径生成动态路由。
+例如:
+```
+pages/
+--| users/
+-----| _id.vue
+-----| index.vue
+```
+会生成:
+```js
+router: {
+  routes: [
+    {
+      name: 'users',
+      path: '/users',
+      component: 'pages/users/index.vue'
+    },
+    {
+      name: 'users-id',
+      path: '/users/:id',
+      component: 'pages/users/_id.vue'
+    }
+  ]
+}
+```
+## 嵌套路由
+嵌套路由，就是路由选项中的`children`。要定义嵌套路由的话，就必须要创建一个`.vue`文件，并且创建一个和这个`.vue`名称一样的文件夹，这个文件夹就是你需要嵌套的路由视图。
+> **注意: 要使用嵌套路由，需要在父级路由中使用 `<nuxt-child></nuxt-child>` 标签**
+
+例如:
+```
+pages/
+--| users/
+-----| _id.vue
+--| users.vue
+```
+会自动生成:
+```js
+router: {
+  routes: [
+    {
+      path: '/users',
+      component: 'pages/users.vue',
+      children: [
+        {
+          path: ':id?',
+          component: 'pages/users/_id.vue',
+          name: 'users-id'
+        }
+      ]
+    }
+  ]
+}
+```
+这个时候可以看到，生成了一个 `path:id?` 的路由，这个问号表示该参数是可选的，如果你想要这个参数必填，就必须在`users`文件夹下创建一个 `index.vue` 文件:
+```
+pages/
+--| users/
+-----| _id.vue
+-----| index.vue
+--| users.vue
+```
+Nuxt.js 会生成:
+```js
+router: {
+  routes: [
+    {
+      path: '/users',
+      component: 'pages/users.vue',
+      children: [
+        {
+          path: '',
+          component: 'pages/users/index.vue',
+          name: 'users'
+        },
+        {
+          path: ':id',
+          component: 'pages/users/_id.vue',
+          name: 'users-id'
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 动态路由的嵌套
+> 这个场景可能比较少遇到，但是nuxtjs还是支持动态路由嵌套的，也就是 动态路由内在包含子动态路由。
+例如:
+```
+pages/
+--| _category/
+-----| _subCategory/
+--------| _id.vue
+--------| index.vue
+-----| _subCategory.vue
+-----| index.vue
+--| _category.vue
+--| index.vue
+```
+会生成:
+```js
+router: {
+  routes: [
+    {
+      path: '/',
+      component: 'pages/index.vue',
+      name: 'index'
+    },
+    {
+      path: '/:category',
+      component: 'pages/_category.vue',
+      children: [
+        {
+          path: '',
+          component: 'pages/_category/index.vue',
+          name: 'category'
+        },
+        {
+          path: ':subCategory',
+          component: 'pages/_category/_subCategory.vue',
+          children: [
+            {
+              path: '',
+              component: 'pages/_category/_subCategory/index.vue',
+              name: 'category-subCategory'
+            },
+            {
+              path: ':id',
+              component: 'pages/_category/_subCategory/_id.vue',
+              name: 'category-subCategory-id'
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 路由的验证
+Nuxt.js 可以让你定义一个验证方法在你的**动态路由组件**里面，如果验证方法不返回`true`那么Nuxt.js会自动加载404错误页面。
+```js
+<script>
+export default {
+  // params是动态路由接受的参数，如果你动态路由叫做`_id.vue` 那么用 `params.id` 就可以取到对应的参数
+  validate ({ params }) {
+    return true // 返回ture路由表示验证通过，继续渲染页面
+    return false // 返回false会终止渲染页面，并转跳到404错误页面
+  }
+}
+</script>
+```
+
+### 实例说明
+博客目前的页面也不多，包括 `首页、文章详情页、栏目分类页` 三个
+```
+pages/
+--| article/
+-----| _id.vue  文章详情页
+--| catalog/
+-----| index.vue   栏目分类页
+--| index.vue  首页（Blog页面）
+
+```
+根据这样的文件结构，Nuxt.js会帮我自动生成 这样的一个路由对象
+```
+routes: [
+  {
+    path: "/",
+    name: "index"
+  },
+  {
+    path: "/catalog",
+    name: "catalog"
+  },
+  {
+    path: "/article/:id",
+    name: "article-id"
+  }
+]
+```
+
+> 总体来说，Nuxt.js 的路由功能非常灵活，并且方便使用。只要了解好路由生成规则，那么根据自己的需求创建视图文件，是很简单的事情。
+> 这篇教程主要参考的也是 [https://nuxtjs.org](https://nuxtjs.org) 官网的引导说明，希望对大家有帮助。

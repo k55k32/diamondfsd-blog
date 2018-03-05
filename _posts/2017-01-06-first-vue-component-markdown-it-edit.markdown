@@ -2,7 +2,7 @@
 layout: post
 title: 我的第一个Vue组件 Markdown-It-Editor，支持Markdown格式的富文本编辑器
 date: 2017-01-06 10:03:29 +0800
-description: 由来  编辑器由Vue2 来开发完成， 作为 Vue Component （Vue 组件）来使用。 有兴趣可以在GitHub上看一下源码，和在线体验一下，具体的用法和说明文档也是在github上面 --> Fork on Github | Try the Demo。 写这个编辑器的原因主要是因为自己想写一个博客，作为技术人员的博客，当然编辑器也要有geeker范。markdown就是一种很合适我的一中语法，格式统一，没有普通富文本那么花哨。功能丰富，对主要的一些文本操作都支持。能够像写代码一样写文章，这种体验 爽到爆，当然这种体验是基于markdown的:)。
+description: 编辑器由Vue2 来开发完成， 作为 Vue Component （Vue 组件）来使用。 有兴趣可以在GitHub上看一下源码，和在线体验一下，具体的用法和说明文档也是在github上面 --> Fork on Github | Try the Demo。 写这个编辑器的原因主要是因为自己想写一个博客，作为技术人员的博客，当然编辑器也要有geeker范。markdown就是一种很合适我的一中语法，格式统一，没有普通富文本那么花哨。功能丰富，对主要的一些文本操作都支持。能够像写代码一样写文章，这种体验 爽到爆，当然这种体验是基于markdown的:)。
 img: bc38d789-5046-4c2a-81ce-af472a4d45b2.png
 tags: [vue组件,富文本编辑器,vue]
 ---

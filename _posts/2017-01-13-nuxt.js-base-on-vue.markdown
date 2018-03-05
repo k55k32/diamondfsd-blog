@@ -1,0 +1,59 @@
+---
+layout: post
+title: Nuxt.js - 基于Vue的服务端渲染框架
+date: 2017-01-13 22:25:59 +0800
+description: 博客的前端想了很久，要用什么框架。  之前一直用Vue在做一些Web应用，Vue从2.0开始支持 SSR（Server Side Render 服务器端渲染），于是萌生了用Vue来做我的博客前端框架。可是仔细一看，Vue2的SSR配置太过于繁琐，于是就先用 pug/jade 来做我前端的模板引擎，直接用 express 来完成了博客前端的初版。  有一天，无意中发现了，有nuxtjs，这样一个框架，看着官网的例子，只需要简单配置，就能够写出一个服务端渲染，客户端单页面的webapp。着实满足了自己的需求，于是这里分享一些使用 nuxtjs 中的一些经验和趟过的一些坑。写这篇文章的时候，Nuxt
+img:
+tags: [nuxt,nuxt教程,nuxtjs教程,nuxt.js]
+---
+
+博客的前端想了很久，要用什么框架。
+
+之前一直用`Vue`在做一些Web应用，Vue从2.0开始支持 SSR（Server Side Render 服务器端渲染），于是萌生了用Vue来做我的博客前端框架。可是仔细一看，Vue2的SSR配置太过于繁琐，于是就先用 `pug/jade` 来做我前端的模板引擎，直接用 express 来完成了博客前端的初版。
+
+有一天，无意中发现了，有[nuxtjs](https://github.com/nuxt/nuxt.js)，这样一个框架，看着官网的例子，只需要简单配置，就能够写出一个服务端渲染，客户端单页面的webapp。着实满足了自己的需求，于是这里分享一些使用 nuxtjs 中的一些经验和趟过的一些坑。写这篇文章的时候，Nuxt的最新版本是0.9.5，相信很快就能迎来1.0的发布。
+
+## 如何开始
+
+### 方式1
+如果你以前用过 `vue-cli` 的话，那开始nuxt很简单。
+直接使用 `vue init nuxt/starter <project-name>`，初始化一个nuxt模板项目
+```
+// 进入项目目录
+cd <project-name>
+
+// 安装依赖
+npm install # Or yarn
+
+// 运行开发脚本
+npm run dev
+```
+使用以上命令，就可以启动一个简单的nuxtjs服务
+![alt]({{site.baseurl}}/assets/img/b233b98d-d849-424c-ade3-873ecd925730r)
+接下来在浏览器端输入`http://localhost:3000` 就可以进入nuxtjs为我们渲染的页面了
+
+
+### 方式2
+如果你没用过`vue-cli` 那创建一个nuxt项目也很简单，
+1. 新建一个项目文件夹，创建一个 `package.json` 文件如下
+```
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "nuxt"
+  }
+}
+```
+2. 安装nuxt依赖，使用 `npm install nuxt --save`
+3. 在项目文件夹内创建一个 `pages` 文件夹，nuxt会自动将`pages`文件夹内的 `*.vue` 文件根据路径到对应路由。在`pages`文件夹下创建 `index.vue` 文件。
+```html
+<template>
+  <h1>Hello world!</h1>
+</template>
+```
+4. 运行`npm run dev`， 这时候你可以在浏览器打开`http://localhost:3000`
+
+> Nuxtjs 会监听`pages`文件夹下所有文件，当有文件变动时，浏览器对应的页面也会自动刷新，这极大的简化了我们开发的步骤。
+
+到这里，你已经成功的创建了一个nuxtjs项目，并且运行了起来，接下来，我会根据这个博客的前端来实际的讲解nuxtjs的一些特性和教程，大家有什么意见和建议，也可以在文章底部留言给我。
+
