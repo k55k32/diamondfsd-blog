@@ -2,7 +2,7 @@
 layout: post
 title: Nuxt.js教程之 —— Nuxt的路由生成规则
 date: 2017-01-15 18:58:06 +0800
-description: Nuxt.js 帮助我们集成了路由的功能，只要掌握一些基本要点，就能创造出自己想要的效果，这一篇文章主要就是讲nuxt的几种路由规则。  基本路由  nuxt.js 会根据你项目目录下 pages 文件夹内的 *.vue文件来自动生成 vue-router 路由配置。  例如如下目录  pages/ --| team/ -----| index.vue -----| about.vue --| index.vue 会自动生成  router: {   routes: [     {       name: 'index',       path: '/',       component: '
+description: "Nuxt.js 帮助我们集成了路由的功能，只要掌握一些基本要点，就能创造出自己想要的效果，这一篇文章主要就是讲nuxt的几种路由规则。  基本路由  nuxt.js 会根据你项目目录下 pages 文件夹内的 *.vue文件来自动生成 vue-router 路由配置。  例如如下目录  pages/ --| team/ -----| index.vue -----| about.vue --| index.vue 会自动生成  router: {   routes: [     {       name: 'index',       path: '/',       component: '"
 img:
 tags: [nuxt,nuxt.js路由,nuxt教程,nuxtjs教程,nuxt.js]
 ---

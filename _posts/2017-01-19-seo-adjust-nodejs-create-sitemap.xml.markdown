@@ -2,7 +2,7 @@
 layout: post
 title: SEO优化 - 使用nodejs动态生成网站sitemap.xml 优化抓取
 date: 2017-01-19 14:33:31 +0800
-description: 主要讲一下如何用Nodejs + express + sitemap.js 来动态生成 sitemap.xml。 自己的博客前端动态生成 sitemap.xml 来让搜索引擎（google_site:diamondfsd.com）抓取，生成了 sitemap.xml 过后，果然自己博客的收录速度快了很多。 下面就简单的介绍一下 sitemap.xml 的作用以及 一个简单的例子。  sitemap 介绍  sitemap，翻译过来就是站点地图。是告诉搜索引擎这个网站上有那些页面可以抓取。 sitemap最简单的格式 txt 格式， 只需要每行列出一个链接就可以: sitemap.txt  ht
+description: "主要讲一下如何用Nodejs + express + sitemap.js 来动态生成 sitemap.xml。 自己的博客前端动态生成 sitemap.xml 来让搜索引擎（google_site:diamondfsd.com）抓取，生成了 sitemap.xml 过后，果然自己博客的收录速度快了很多。 下面就简单的介绍一下 sitemap.xml 的作用以及 一个简单的例子。  sitemap 介绍  sitemap，翻译过来就是站点地图。是告诉搜索引擎这个网站上有那些页面可以抓取。 sitemap最简单的格式 txt 格式， 只需要每行列出一个链接就可以: sitemap.txt"
 img: 9773977c-0db1-464a-ae32-c7bf92da12f5.png
 tags: [seo,express生成sitemap.xml,nodejs生成sitemap.xml,sitemap.js教程,seo优化]
 ---

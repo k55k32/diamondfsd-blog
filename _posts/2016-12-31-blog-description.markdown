@@ -2,7 +2,7 @@
 layout: post
 title: BLOG项目简介
 date: 2016-12-31 11:07:58 +0800
-description: 博客项目地址  博客Web API 博客前端 博客后台  Blog 简介  这几年来的成长，也让自己的技术水平和架构水平有了一个显著的提高。 早就有心做一个BLOG，一直徘徊于设计和方案上， 这段时间发现，你的博客需要的不仅仅是好看，高大上，重要的是有干货，能够帮助到大家的一些内容，这才是最主要的。 BLOG 的核心就是内容，这个博客自己项目经验和学习一些技术的方式，和包括这个博客在内涉及的一些技术点的分享。  分享的内容包括：  java开发: spring spring-boot spring-mvc 等常用框架 前端开发: ES2015 vuejs javascript 移动端开发 SP
+description: 博客项目地址  博客Web API 博客前端 博客后台  Blog 简介  这几年来的成长，也让自己的技术水平和架构水平有了一个显著的提高。 早就有心做一个BLOG，一直徘徊于设计和方案上， 这段时间发现，你的博客需要的不仅仅是好看，高大上，重要的是有干货，能够帮助到大家的一些内容，这才是最主要的。 BLOG 的核心就是内容，这个博客自己项目经验和学习一些技术的方式，和包括这个博客在内涉及的一些技术点的分享。  分享的内容包括：  java开发 spring spring-boot spring-mvc 等常用框架 前端开发 ES2015 vuejs javascript 移动端开发 SP
 img: 93ace93b-e84a-4cf7-a0b1-991d192ef194.jpg
 tags: [javascript,nuxt,css,html,npm,vue]
 ---

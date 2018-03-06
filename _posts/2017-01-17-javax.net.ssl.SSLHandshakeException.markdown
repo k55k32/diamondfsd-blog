@@ -2,7 +2,7 @@
 layout: post
 title: javax.net.ssl.SSLHandshakeException - Received fatal alert - handshake_failure 邮件发送失败
 date: 2017-01-17 14:24:25 +0800
-description: 今天在写邮件发送的时候，报了一个错误javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure。  看字面上意思应该是握手失败。查了一些资料，是因为Java8开始禁用了 RC4 加密方式。而刚刚好，QQ的服务器用的就是这种方式。 这就很尴尬了，最后找到两个方法来解决这个问题。 方法一、 跳过 JCE（java加密组件） API 参考stackoverflowlink 这种方法比较简单， 之间在发送邮件之前执行下列方法即可， 这个方法会判断如果是Oracle的jre，就会通过反射跳过JCE API的执行
+description: "今天在写邮件发送的时候，报了一个错误javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure。  看字面上意思应该是握手失败。查了一些资料，是因为Java8开始禁用了 RC4 加密方式。而刚刚好，QQ的服务器用的就是这种方式。 这就很尴尬了，最后找到两个方法来解决这个问题。 方法一、 跳过 JCE（java加密组件） API 参考stackoverflowlink 这种方法比较简单， 之间在发送邮件之前执行下列方法即可， 这个方法会判断如果是Oracle的jre，就会通过反射跳过JCE API的执行"
 img:
 tags: [java]
 ---
