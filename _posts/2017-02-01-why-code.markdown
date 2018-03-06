@@ -1,0 +1,31 @@
+---
+layout: post
+title: Why Code?
+date: 2017-02-01 17:47:44 +0800
+description: "很久以前看到的一篇文章，今天找出来转载一下，出处忘记了。找了半天也没找到，如果谁有相关资料可以告诉我，我写上去。  “We live in a society exquisitely dependent on science and technology, in which hardly anyone knows anything about science and technology.” - Carl Sagan Learning to code in today’s world is like learning to read and write or more like learnin"
+img: c2ab5275-4674-4fbe-a3d9-094782fedbd3.png
+tags: [why code]
+---
+
+很久以前看到的一篇文章，今天找出来转载一下，出处忘记了。找了半天也没找到，如果谁有相关资料可以告诉我，我写上去。
+
+>“We live in a society exquisitely dependent on science and technology, in which hardly anyone knows anything about science and technology.” - Carl Sagan
+
+Learning to code in today’s world is like learning to read and write or more like learning to draw, to play a musical instrument, to play a sport. Learning to code is like learning to find solutions. Job of a coder is not to write code for machines, but to find a solution for people to make life easy.
+
+There used to be a time when we had problem like how to stay connected with friends who lived in another part of the world, in another city. By creating Facebook, Mark Zuckerberg just didn’t wrote thousands line of codes, but actually solved the problem of millions of people. This is just one example, there are plenty.
+
+We should study code, for the same reason we should study mathematics, chemistry, economics, philosophy and ethics, local and world history. We study these subjects to have a better understanding of our surroundings and to provide better solutions to the problems.
+
+Learning how to code will also helps us understand the world in a better way. Computer runs the world, and code runs computers. We are dependent on computers, computers are dependent on codes.
+
+Everyone should be able to code, for the same reason that everyone should be able to speak another language. Learning how to code is like learning how to speak with computers effectively. It helps us communicate with computers. It helps in communicating what we want to build or do more effectively.
+Coding gives us ability to translate an idea into a prototype.
+
+The mental skills developed by learning to code are supremely useful in many other facets of life. It improves your ability to take a large problem and break it down into a series of smaller tasks. It will improve your decision-making and critical thinking.
+
+Learn to code if you have a desire to understand machines, computers, internet, mobile apps, blogs, websites etc.
+
+I think we should all have a rudimentary understanding of our pervasive technology and how it works, so that we can make more intelligent decisions.
+
+> “Computer Programming is an art, because it applies accumulated knowledge to the world, because it requires skill and ingenuity, and especially because it produces object of beauty.” -Donald Knuth

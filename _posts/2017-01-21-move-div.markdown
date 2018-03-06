@@ -1,0 +1,201 @@
+---
+layout: post
+title: 键盘的方向键控制div 进行上下左右移动，上左下右等斜方移动
+date: 2017-01-21 19:38:12 +0800
+description: "写这个东西很简单，主要是组合键的处理，div移动的方式有很多，我用的最简单的方式就是 父容器relative，需要子滑块absolute。 这样控制子滑块的left 和 top 就可以控制它移动了。 组合键的方式也很简单，当 keydown 的时候，将keyCode 放入一个Set里面 ， 然后将 将这个set遍历 进行移动操作， 如果 set里面有 ↑← 的keyCode 就执行 上移左移操作。 keyup的时候就从 Set里面delete 对于的keyCode。 这样就实现了 组合键的移动。  演示（按 上下左右 可以滑动 SLIDE ）  SLIDE CodePen: CodePen A"
+img:
+tags: [javascript,html,前端开发]
+---
+
+写这个东西很简单，主要是组合键的处理，div移动的方式有很多，我用的最简单的方式就是
+父容器relative，需要子滑块absolute。
+这样控制子滑块的left 和 top 就可以控制它移动了。
+组合键的方式也很简单，当 keydown 的时候，将keyCode 放入一个Set里面 ， 然后将
+将这个set遍历 进行移动操作， 如果 set里面有 ↑← 的keyCode 就执行 上移左移操作。
+keyup的时候就从 Set里面delete 对于的keyCode。 这样就实现了 组合键的移动。
+## 演示（按 `上下左右` 可以滑动 SLIDE ）
+<style>
+.move-container{
+  width: 800px;
+  height: 500px;
+  background: #000;
+  margin:auto;
+  margin-top:0px;
+  position: relative;
+}
+.move-element{
+  width: 80px;
+  height: 60px;
+  background:#fff;
+}
+</style>
+
+<div class="move-container">
+  <div id="move" class="move-element"> SLIDE </div>
+</div>
+
+<script>'use strict';
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError('Cannot call a class as a function');
+    }
+}
+var absMover = function () {
+    function absMover(el) {
+        var stepPx = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+        _classCallCheck(this, absMover);
+        this.el = el;
+        this.stepPx = stepPx;
+        this.offsetLeft = el.offsetLeft;
+        this.offsetTop = el.offsetTop;
+    }
+    absMover.prototype.render = function render() {
+        this.el.setAttribute('style', 'position:absolute;top:' + this.offsetTop + 'px;left:' + this.offsetLeft + 'px');
+    };
+    absMover.prototype.moveLeft = function moveLeft() {
+        this.offsetLeft -= this.stepPx;
+        this.render();
+    };
+    absMover.prototype.moveRight = function moveRight() {
+        this.offsetLeft += this.stepPx;
+        this.render();
+    };
+    absMover.prototype.moveTop = function moveTop() {
+        this.offsetTop -= this.stepPx;
+        this.render();
+    };
+    absMover.prototype.moveBottom = function moveBottom() {
+        this.offsetTop += this.stepPx;
+        this.render();
+    };
+    return absMover;
+}();
+var bindLoad = function() {
+var move = document.getElementById('move');
+var mover = new absMover(move, 1);
+function eventKeyDown(key) {
+    switch (key) {
+    case 37:
+        mover.moveLeft();
+        break;
+    case 38:
+        mover.moveTop();
+        break;
+    case 39:
+        mover.moveRight();
+        break;
+    case 40:
+        mover.moveBottom();
+        break;
+    }
+}
+var keyDownSet = new Set();
+function moveSlide() {
+    keyDownSet.forEach(function (key) {
+        return eventKeyDown(key);
+    });
+}
+document.body.addEventListener('keydown', function (e) {
+   if (e.keyCode >=37 && e.keyCode <= 40)     e.preventDefault();
+    keyDownSet.add(e.keyCode);
+    moveSlide();
+});
+document.body.addEventListener('keyup', function (e) {
+    keyDownSet.delete(e.keyCode);
+});
+}
+setTimeout(bindLoad, 1000)
+//# sourceURL=pen.js
+</script>
+
+CodePen: [CodePen Address](http://codepen.io/diamondfsd/pen/OWmPNa)
+## CSS
+```css
+.move-container{
+  width: 800px;
+  height: 500px;
+  background: #000;
+  margin:auto;
+  margin-top:80px;
+  position: relative;
+}
+.move-element{
+  width: 80px;
+  height: 60px;
+  background:#fff;
+}
+```
+
+## HTML(pug)
+```pug
+div.move-container
+  div.move-element#move SLIDE
+```
+## JS
+```js
+class absMover  {
+  constructor(el, stepPx = 1) {
+    this.el = el
+    this.stepPx = stepPx
+    this.offsetLeft = el.offsetLeft
+    this.offsetTop = el.offsetTop
+  }
+
+   render () {
+     this.el.setAttribute('style',
+`position:absolute;top:${this.offsetTop}px;left:${this.offsetLeft}px`)
+  }
+
+  moveLeft () {
+    this.offsetLeft -= this.stepPx
+    this.render()
+  }
+  moveRight () {
+    this.offsetLeft += this.stepPx
+    this.render()
+  }
+  moveTop () {
+    this.offsetTop -= this.stepPx
+    this.render()
+  }
+  moveBottom () {
+    this.offsetTop += this.stepPx
+    this.render()
+  }
+
+}
+
+const move = document.getElementById('move')
+const mover = new absMover(move, 1)
+
+function eventKeyDown (key) {
+  switch (key) {
+    case 37:
+      mover.moveLeft()
+      break
+    case 38:
+      mover.moveTop()
+      break
+    case 39:
+      mover.moveRight()
+      break
+    case 40:
+      mover.moveBottom()
+      break
+  }
+}
+let keyDownSet = new Set()
+
+function moveSlide() {
+  keyDownSet.forEach(key => eventKeyDown(key))
+}
+
+document.addEventListener('keydown', (e) => {
+  e.preventDefault()
+  keyDownSet.add(e.keyCode)
+  moveSlide()
+})
+document.addEventListener('keyup', (e) => {
+  keyDownSet.delete(e.keyCode)
+})
+```

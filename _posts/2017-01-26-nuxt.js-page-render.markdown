@@ -1,0 +1,117 @@
+---
+layout: post
+title: Nuxt.js教程之 —— 页面渲染详解
+date: 2017-01-26 11:42:27 +0800
+description: "Nuxt 的视图其实就是一个Vue 组件，不过Nuxt 定制了一些特殊的方法，让我们来更加全面的渲染我们的页面。  这里来讲解一下博客首页 index.vue 的组成  <template lang="pug"> .container   article-list(:page="page") </template>  <script> import service from '../service/ArticleService' import ArticleList from '~components/article/ArticleList' export default{   compone"
+img:
+tags: [nuxt,nuxt教程,nuxt.js教程,nuxtjs教程,nuxt.js]
+---
+
+Nuxt 的视图其实就是一个Vue 组件，不过Nuxt 定制了一些特殊的方法，让我们来更加全面的渲染我们的页面。
+
+这里来讲解一下博客首页 `index.vue` 的组成
+```html
+<template lang="pug">
+.container
+  article-list(:page="page")
+</template>
+
+<script>
+import service from '../service/ArticleService'
+import ArticleList from '~components/article/ArticleList'
+export default{
+  components: {ArticleList},
+  async data({route: {query: {pageSize, currentPage}}}) {
+    let page = await service.list(currentPage, pageSize)
+    if (page.data.length === 0) {
+      throw new Error('page number error: ' + currentPage)
+    }
+    return {
+      page: page
+    }
+  },
+  head () {
+    return {
+      title: this.$setting('blog-name'),
+      meta: [
+        {name: 'description', content: this.$setting('meta-description')}
+      ]
+    }
+  }
+}
+</script>
+
+```
+
+## `data` 方法
+这里出现的 `data` 方法，和我们平时使用Vue组件内的 `data` 有很大的不同
+1. 在这个`data`方法里面，我们获取不到 `this`指针，因为`data`方法在组件初始化之前就已经被调用了
+2. `data` 方法可以接收两个参数 `data(context, callback)`
+### 参数 `context`
+属性名 | 类型 | 访问范围 | 说明
+-----| ---- | ----| -----
+isClient| Boolean| Client & Server| 判断渲染端是不是客户端（浏览器端），第一次从浏览器加载页面的时候，是从服务端渲染完一个完整结构的html返回到前端，后面每次点击 路由，都只会在客户端进行渲染。
+isServer|Boolean | Client & Server|判断渲染端是不是在服务端
+isDev | Boolean | Client & Server | 生成nuxt实例的时候，可以传入改值，一般用于判断是否在生产环境中，做一些特殊的逻辑判断
+route | Object | Client & Server | `vue-router` 的 `route` 实例
+store | Object | Client & Server | `Vuex.Store` 实例，只有在配置了 `store` 的时候可用
+env | Object | Client & Server |  在 nuxt.config.js 中配置的变量环境
+params | Object|Client & Server| `route.params` 的别名
+query|Object | Client & Server | `route.query` 的别名
+req | Object | Server | node.js 服务器的 `request` 对象
+res | Object | Server | node.js 服务器的 `response` 对象
+redirect | Function | Client & Server | 可以重定向到其他地址，在服务端渲染的时候，会同时发送状态码，默认是 `302`。 调用方法: `redirect([status,] path [, query])`
+error| Function| Client & Server | 使用这个方法会转跳到`error` 页面: `error(params)`
+
+3. `data` 方法是支持异步的，当然，同样可以直接返回一个Object。用作数据渲染
+## 异步 `data`
+nuxt.js 提供几种不同的方式，来让你异步读取数据
+### 返回 `Promise`
+```js
+export default {
+  data ({ params }) {
+    return axios.get(`https://my-api/posts/${params.id}`)
+    .then((res) => {
+      return { title: res.data.title }
+    })
+  }
+}
+```
+### 使用  `async/await` 语法糖
+```js
+export default {
+  async data ({ params }) {
+    let { data } = await axios.get(`https://my-api/posts/${params.id}`)
+    return { title: data.title }
+  }
+}
+```
+### 使用 `callback` 回调方法
+data 可以的第二个参数是一个 ``callback(error, data)` ，这个方法如果第一个参数不为空，例如`      callback({ statusCode: 404, message: 'Post not found' })` 那么就会转跳到错误页面
+```js
+export default {
+  data ({ params }, callback) {
+    axios.get(`https://my-api/posts/${params.id}`)
+    .then((res) => {
+      callback(null, { title: res.data.title })
+    })
+  }
+}
+```
+
+## `head` 方法
+head方法里面我们可以返回一个 Object, 并且可以用 `this` 获取组件实例， 这里最终会渲染到 页面的 `<head>` 标签内
+```
+head () {
+  return {
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {name: 'description', content: this.$setting('meta-description')}
+    ],
+    link: [
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
+    ]
+  }
+}
+```
