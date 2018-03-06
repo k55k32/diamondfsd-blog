@@ -15,12 +15,12 @@ tags: [我们是谁,canvas实例,canvas]
 
 PC端
 
-![alt]({{site.baseurl}}/img/038a1be7-cec2-4bfd-981c-ba218fd232d6.png)
+![alt]({{site.baseurl}}/assets/img/038a1be7-cec2-4bfd-981c-ba218fd232d6.png)
 
 
 移动端
 
-![alt]({{site.baseurl}}/img/5a125b94-9045-49ef-893a-09428201c912.png)
+![alt]({{site.baseurl}}/assets/img/5a125b94-9045-49ef-893a-09428201c912.png)
 
 
 
