@@ -177,4 +177,5 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
 - 登陆 [https://oss.sonatype.org/](https://oss.sonatype.org/) 点击左侧 `Staging Repositoryies` 菜单，然后下拉到最下面，可以找到你刚刚上传的包
 - 选中改包点击 `Close`
 - `Close` 完成后，点击 `Release` (如果Close失败， 点击项目，可以在底部Activity内看到失败原因，根据原因自行解决)
-- `Release` 完成后，你的包就进入了中央仓库同步队列了，同步完成后，其他人就可以直接在 `pom.xml` 内添加你的包依赖了，具体同步时间没有测过，总之一个字等就够了
+- `Release` 完成后，你的包就进入了中央仓库同步队列了，同步完成后，其他人就可以直接在 `pom.xml` 内添加你的包依赖了，具体的同步时间，官方给出的是
+10内会同步到中央仓库，可以引用依赖。然后2小时内同步到搜索引擎，可以在 https://search.maven.org 搜索到。
