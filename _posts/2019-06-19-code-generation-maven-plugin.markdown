@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 写一个简单易用扩展性高的代码生成器Maven插件
+title: 编写代码生成器的心路历程，和一个只需要一天就能完成的代码生成器maven插件源码
 date: 2019-6-19 17:12:25 +0800
-description: "本篇文章主要讲代码生成器的产生背景，代码生成器在后端项目中的主要作用，如何写一个好用的代码生成器"
+description: "本篇文章主要讲代码生成器的产生背景，一个通用性的代码生成器源码，和Maven中央仓库上传教程。代码生成器的原理简单，大家可以自行看源码解决"
 img:
 tags:
 ---
@@ -42,21 +42,122 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
 2. 框架自带代码生成器
 通常和框架绑定，对于已有的系统难以植入，局限性高。生成的代码格式较为单一，很难做到一键使用。
 
-3. 自定义代码生成器（本文所用的方式）
+3. 自定义代码生成器
 因为大部分系统的代码结构比较统一，但又有些不同，所以在市场上没有适合自己的生成器的时候，我们就会选择自己写一个，通过直接执行`main`方法来生成文件，定义几个参数，在需要生成的时候进行修改执行。
 
-本文主要介绍这种方式，并且说一说如何通过这样的方式写一个 maven 插件，来让代码生成器配置简单化，易于移至，多系统多项目简单方便的使用。
-
 ## 自定义代码生成器maven插件 
-代码生成器的原理，大体就是根据指定的模板，传入动态的参数，生成不同的代码。 
+代码生成器的原理，大体就是根据指定的模板，传入动态的参数，替换模板内容，生成文件不同的代码。 
 
+通过maven插件的方式，可以很好的集成到我们的项目中，只需要添加插件依赖，然后添加几个配置，执行maven相关命令，就可以完成代码生成的操作，这是我写这个项目的背景。
+- 代码生成器开源地址: (https://github.com/k55k32/simple-codegen)[https://github.com/k55k32/simple-codegen]
 `simple-codegen` 使用freemarker作为模板引擎，结合maven插件，使参数配置简单化， 并且多项目使用只需要添加插件依赖，并且修改制定参数，定制好模板，即可一键生成代码。
 
-因为模板可以根据项目自定义，所以基本所有情况下，只需要定义好模板，即可开始使用，未来还将支持
+- 因为模板可以根据项目自定义，所以基本所有情况下，只需要定义好模板，即可开始使用，未来可能还将支持
 1. 读取表结构作为参数
 2. 调用接口作为参数
 3. 调用本地代码作为参数
 
-## 代码生成器代码解析
+## 代码实现细节讲解
+- 自行看源码，不懂的可以提`Issue`， 有优化可以提 `Pull Request`
 
-## Maven插件教程
+## 上传至中央仓库教程
+我真是边写教程边上传，真正的一手实操经验
+### 1. 申请中央仓库账号
+-  进入 (https://issues.sonatype.org)[https://issues.sonatype.org]
+- 点击  Sign up 创建账号 
+- 新建一个问题类型为New Project的, 注意Group Id和自己项目pom.xml要一致，如果是自己的域名，需要有域名dns权限，因为仓库管理员会要求你添加Txt记录指向指定地址。如果没有自己的域名，可以用自己的Github地址，管理员会要求你创建一个指定名称的仓库    
+![alt]({{site.baseurl}}/assets/post-img/2019-06-19/create.png)
+- 提交申请完成后，管理员就会通知你用户已经可以上传快照版本或者发布版本了   
+![alt]({{site.baseurl}}/assets/post-img/2019-06-19/issue-closed.png)   
+前期注册工作就完成了，接下来是上传流程
+
+### 2. `pom.xml` 修改和 `settings.xml` 配置
+- 在本地maven配置 `settings.xml` 内添加自己的账号密码(上传需要), id可以自定义。账号密码可以明文输入，也可以登陆 `https://oss.sonatype.org` 点击用户名进入Profile, 然后创建一个加密的AccessUserToken, 
+```xml
+<servers>
+    <server>
+        <id>sonatype-center</id>
+        <username>youRegisterUsername</username>
+        <password>youRegisterPassword</password>
+    </server>
+</servers>
+```
+- 在 `pom.xml` 内添加远程发布仓库地址，注意id需要和 `settings-xml`配置的一致
+```xml
+<distributionManagement>
+    <repository>
+        <id>sonatype-center</id>
+        <name>releases repo</name>
+        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+        <id>sonatype-center</id>
+        <name>snapshots repo</name>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+</distributionManagement>
+```
+- `pom.xml` 文件内容如要标准化，需要添加以下标签描述，内容自定义
+```xml
+<name>simple-codegen</name>
+<url>https://diamondfsd.com</url>
+
+<description>
+    simple code generate maven plugin.
+    Template rendering through Java and freemarker.
+</description>
+
+<developers>
+    <developer>
+        <id>diamondfsd</id>
+        <name>Diamond Zhou</name>
+        <email>diamondfsd@gmail.com</email>
+        <url>https://diamondfsd.com</url>
+        <timezone>8</timezone>
+    </developer>
+</developers>
+
+<licenses>
+    <license>
+        <name>The MIT License</name>
+        <url>https://opensource.org/licenses/MIT</url>
+        <distribution>repo</distribution>
+    </license>
+</licenses>
+<scm>
+    <url>
+        https://github.com/k55k32/simple-codegen.git
+    </url>
+</scm>
+```
+
+### 3. 文件签名 （不签名无法发布）  
+- [签名教程](https://central.sonatype.org/pages/working-with-pgp-signatures.html)   
+- windows版本下载: [https://gpg4win.org/download.html](https://gpg4win.org/download.html)  
+
+- 安装完成后的名字叫: `Kleopatra` ， 默认会自动打开， 手动新建一个密钥对，创建完成后，注意如果是在IDE等环境中运行maven，安装完Kleopatra需要重启IDE， 否则环境变量未生效， 执行maven插件的时候，找不到 `gpg` 命令
+
+- `pom.xml` 添加插件配置
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <version>1.5</version>
+    <executions>
+        <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>sign</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+### 4. 到中央仓库发布
+- 执行 `mvn clean deploy` 上传到中央仓库
+- 登陆 (https://oss.sonatype.org/)[https://oss.sonatype.org/] 点击左侧 `Staging Repositoryies` 菜单，然后下拉到最下面，可以找到你刚刚上传的包
+- 选中改包点击 `Close`
+- `Close` 完成后，点击 `Release` (如果Close失败， 点击项目，可以在底部Activity内看到失败原因，根据原因自行解决)
+- `Release` 完成后，你的包就进入了中央仓库同步队列了，同步完成后，其他人就可以直接在 `pom.xml` 内添加你的包依赖了，具体同步时间没有测过，总之一个字等就够了
