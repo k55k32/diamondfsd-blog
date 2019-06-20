@@ -34,20 +34,20 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
 如果你的项目结构是无规律的，那么代码生成器可能不太适合你
 
 ## 代码生成器的级别
-1. 复制粘贴型代码生成器
+1. 复制粘贴型代码生成器   
 顾名思义，最简单也是用的最多的方式，直接将现有的其他类似文件复制一份，改一改关键信息即可。成本最低，耗时根据项目需要复制的文件决定。有可能因为少改某些内容导致代码异常。
 
 总的来说，通过复制粘贴的方式来生成代码，简单易用，无学习成本，但是比较容易出错，有一定修改成本，耗时和文件数量、修改内容成正比。
 
-2. 框架自带代码生成器
+2. 框架自带代码生成器   
 通常和框架绑定，对于已有的系统难以植入，局限性高。生成的代码格式较为单一，很难做灵活配置化使用。
-
-3. 自定义代码生成器
+ 
+3. 自定义代码生成器   
 因为大部分系统的代码结构比较统一，但又有些不同，所以在市场上没有适合自己的生成器的时候，我们就会选择自己写一个，通过直接执行`main`方法来生成文件，定义几个参数，在需要生成的时候进行修改执行。
 
 本文介绍的代码生成器主要在此基础上进行扩展，通过maven插件的方式，将需要自定义的参数通过插件配置来运行，这样一套代码多地使用，只需要添加maven依赖，不需要将生成器的代码复制多遍难以维护。
 
-## 自定义代码生成器maven插件 
+## 自定义代码生成器maven插件    
 代码生成器的原理，大体就是根据指定的模板，传入动态的参数，替换模板内容，动态生成不同的文件代码。 
 
 通过maven插件的方式，可以很好的集成到我们的项目中，只需要添加插件依赖，然后添加几个配置，执行maven相关命令，就可以完成代码生成的操作。
@@ -80,8 +80,9 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
 
 前期注册工作就完成了，接下来是上传流程，接下来流程用到的用户名密码使用刚刚创建的用户名密码
 
-### 2. `pom.xml` 修改和 `settings.xml` 配置
-- 在本地maven配置 `settings.xml` 内添加自己的账号密码(上传需要), id可以自定义。账号密码可以明文输入，也可以登陆 [https://oss.sonatype.org](https://oss.sonatype.org) 点击右上角用户名进入`Profile`, 然后选择`User Token`创建一个加密的 `Access User Token` , 可以替换 `settings.xml` 内的账号密码，这样可以避免明文保存用户名密码
+### 2. pom.xml 修改和 settings.xml 配置
+- 在本地maven配置 `settings.xml` 内添加自己的账号密码(上传需要), id可以自定义。账号密码可以明文输入，也可以登陆 [https://oss.sonatype.org](https://oss.sonatype.org) 点击右上角用户名进入`Profile`, 然后选择`User Token`创建一个加密的 `Access User Token` , 可以替换 `settings.xml` 内的账号密码，这样可以避免明文保存用户名密码     
+
 ```xml
 <servers>
     <server>
@@ -91,7 +92,9 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
     </server>
 </servers>
 ```
-- 在 `pom.xml` 内添加远程发布仓库地址，注意id需要和 `settings-xml`配置的一致
+
+- 在 `pom.xml` 内添加远程发布仓库地址，注意id需要和 `settings-xml`配置的一致   
+
 ```xml
 <distributionManagement>
     <repository>
@@ -106,7 +109,9 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
     </snapshotRepository>
 </distributionManagement>
 ```
-- `pom.xml` 文件内容如要标准化，需要添加以下标签描述，内容自定义，已添加请忽略，可参考 [pom.xml](https://github.com/k55k32/simple-codegen/blob/master/pom.xml)
+
+- `pom.xml` 文件内容如要标准化，需要添加以下标签描述，内容自定义，已添加请忽略，可参考 [pom.xml](https://github.com/k55k32/simple-codegen/blob/master/pom.xml)   
+
 ```xml
 <name>simple-codegen</name>
 <url>https://diamondfsd.com</url>
@@ -148,7 +153,8 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
 
 注意如果是在IDE等环境中运行maven，安装完Kleopatra需要重启IDE，否则环境变量未生效，执行maven插件的时候，找不到 `gpg` 命令
 
-- `pom.xml` 添加插件配置
+- `pom.xml` 添加插件配置   
+
 ```xml
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
