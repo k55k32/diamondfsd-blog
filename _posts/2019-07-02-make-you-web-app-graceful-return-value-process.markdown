@@ -8,11 +8,9 @@ tags: [spring,spring-mvc,spring-boot,spring-cloud,webapp,web,java,java-web]
 ---
 <script src="https://cdn.bootcss.com/mermaid/8.0.0/mermaid.min.js"></script>
 
-### 前言
-
 在我们进行Java的Web应用开发时，如何写更少的代码，做更多的事情。如何让开发更容易上手，更专注于业务层面，不需要太关心底层的实现。这里就分享一些我平时在搭建基础框架时候的一些心得体验。
 
-[Web篇] 统一处理返回值
+### 统一处理返回值
 
 在web应用中，通常前后端会定义一个统一的对象来封装返回值，一般除了业务数据之外，可能会包含一些请求相关的数据
 
@@ -24,7 +22,7 @@ tags: [spring,spring-mvc,spring-boot,spring-cloud,webapp,web,java,java-web]
 {
 	"code": 0,
 	"msg": "success",
-	"data": any
+	"data": {}
 }
 ```
 统一封装的好处就是前端可以使用统一的逻辑进行请求处理，能够编写通用代码来处理返回值。
@@ -74,7 +72,7 @@ private <T> Object processBody(@Nullable Object body, MethodParameter returnType
 }
 ```
 
-### `ResponseBodyAdvice` 的初始化
+### ResponseBodyAdvice 的初始化
 SpringMVC在初始化的时候， 会调用这个方法`RequestMappingHandlerAdapter.initControllerAdviceCache`，将ResponseBodyAdvice初始化到内存中
 
 这里面会调用`ControllerAdviceBean.findAnnotatedBeans` 这个方法，获取所有带有 `@ControllerAdvice` 注解的类，并且会将所有实现了 `ResponseBodyAdvice` 接口的Bean放入 `requestResponseBodyAdviceBeans`中， 在之前介绍到的 `getAdvice()` 方法取得就是该对象。
