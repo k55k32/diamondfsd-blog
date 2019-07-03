@@ -48,7 +48,7 @@ public interface ResponseBodyAdvice<T>{
   graph LR
       A[DispatchServlet.doDispatch] -- "执行业务逻辑获得返回值" --> B[HttpEntityMethodProcessor.handleReturnValue]
 	  B -- "执行切面" --> C[RequestResponseBodyAdviceChain.beforeBodyWrite]
-	  C -- "自定义处理返回值" --> D[call(RequestResponseBodyAdviceChain.processBody)]
+	  C -- "自定义处理返回值" --> D[RequestResponseBodyAdviceChain.processBody]
 	  D -- "通用消息转换器转换写回" --> E[HttpMessageConverter.write]
 	  E --> F[请求完成]
 </div>
