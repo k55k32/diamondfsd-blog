@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [SpringMVC进阶] 利用@ControllerAdvice和ResponseBodyAdvice接口统一处理返回值
+title: SpringMVC进阶 - 利用@ControllerAdvice和ResponseBodyAdvice接口统一处理返回值
 date: 2019-6-26 16:05:41
 description: "在我们进行Web应用开发的时候，通常需要写很多重复的代码，需要去应对很多重复的逻辑。例如返回值封装，用户状态获取，异常处理，日志打印，错误记录等。本文旨在如何让你的系统变得更加简单好用，让开发人员写更少的代码做更多的事情，更加专注于业务层面，不需要去考虑太多系统层面的东西。"
 img:
