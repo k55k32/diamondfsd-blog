@@ -43,7 +43,7 @@ public interface ResponseBodyAdvice<T>{
 这个接口在返回值被消息转换器写回前端之前进行处理， 大致处理流程如下： 
 
 <div class="mermaid">
-  graph LR
+  graph TB
       A[DispatchServlet.doDispatch] -- "执行业务逻辑获得返回值" --> B[HttpEntityMethodProcessor.handleReturnValue]
 	  B -- "执行切面" --> C[RequestResponseBodyAdviceChain.beforeBodyWrite]
 	  C -- "自定义处理返回值" --> D[RequestResponseBodyAdviceChain.processBody]
@@ -73,9 +73,12 @@ private <T> Object processBody(@Nullable Object body, MethodParameter returnType
 ```
 
 ### ResponseBodyAdvice 的初始化
-SpringMVC在初始化的时候， 会调用这个方法`RequestMappingHandlerAdapter.initControllerAdviceCache`，将ResponseBodyAdvice初始化到内存中
+SpringMVC在初始化的时候， 会调用`RequestMappingHandlerAdapter.initControllerAdviceCache`，将`ResponseBodyAdvice`初始化到容器中
 
-这里面会调用`ControllerAdviceBean.findAnnotatedBeans` 这个方法，获取所有带有 `@ControllerAdvice` 注解的类，并且会将所有实现了 `ResponseBodyAdvice` 接口的Bean放入 `requestResponseBodyAdviceBeans`中， 在之前介绍到的 `getAdvice()` 方法取得就是该对象。
+里面会调用`ControllerAdviceBean.findAnnotatedBeans` ，获取所有带有 `@ControllerAdvice` 注解的类
+
+将所有实现了 `ResponseBodyAdvice` 接口的Bean放入`requestResponseBodyAdviceBeans`中， 在之前介绍到的 `getAdvice()` 方法取得就是该对象。
+
 ```java
 //代码片段
 public static List<ControllerAdviceBean> findAnnotatedBeans(ApplicationContext context) {
