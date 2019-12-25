@@ -15,7 +15,7 @@ tags: [Struts,Struts2,Spring,Spring-mvc,Spring-boot,vue,typescript,es5,es6,nginx
 对于Struts中的一个Action成员变量多如牛毛，引用的地方不计其数，改一处动全身，再加上爆出一些严重的漏洞情况下。SpringMVC开始异军突起，注解式的路径映射，以方法为单位的请求处理，简洁明了的请求定义，开发易上手，易操作，很快的让人开始慢慢抛弃Struts，投入SpringMVC的怀抱。从Struts到SpringMVC的转变中，也只是web层后端框架的选择，开发模式还是和以前一样，前端工程师帮忙做些页面，后端将其转成jsp。然后打成war包，部署到tomcat上，开发流程就完了。
 
 在jsp为主的模板类渲染开发流程下，一个页面请求的渲染如下图:
-<div class="mermaid" style="min-width: 100px">
+<div class="mermaid" style="min-height: 100px">
     sequenceDiagram
         浏览器 ->> Nginx: 发起请求
         Nginx ->> Tomcat: 转发请求
@@ -33,7 +33,7 @@ tags: [Struts,Struts2,Spring,Spring-mvc,Spring-boot,vue,typescript,es5,es6,nginx
 磕磕碰碰写了一段时间，前端水平有所提高，工具用的越来越熟练，利用一些面向对象的思想开始在前端进行开发。开始封装一些封装内部工具，例如渲染表单，自动绑定表单，表格渲染之类的，也算是顺利的过渡到了前后端分离的初期阶段。随着前端团队的慢慢组起，小组可以开始独立的完成一些页面，不需要后端同事再来参与，只需要沟通好接口即可。前后端分离的好处凸显了出来，极大的减少了后端开发人员，特别是一些不擅长html+css的痛苦，工作效率有了很大的提升。人员的分工也开始更加明确，各自专注于自己的领域，工作效率有了一定的提升。
 
 在这个阶段，一个页面请求的流程有了些许改变，页面框架的直接由静态资源提供，然后通过异步的方式进行数据请求，将请求结果用js脚本进行渲染，很大程度减少了jsp编译渲染的耗时，相对于之前的流程，前后端分离的模式，用户体验上有了不少的提升
-<div class="mermaid" style="min-width: 100px">
+<div class="mermaid" style="min-height: 100px">
     sequenceDiagram
         浏览器 ->> Nginx: 发起请求
         Nginx ->> Tomcat: 转发请求
@@ -68,7 +68,7 @@ SVN在当时，是很流行的版本控制工具，作为一个中小型的项�
 到这个阶段，前端项目被剥离出来，可以独立部署，不再依赖后端发布，前后端项目彻底分离，不再互相依赖和影响。前端可以独立于后端单独运行，开发时对于接口访问也可以自行mock，在这阶段后端开发只需要定义好接口文档，前端可以独立进行开发，不受后端开发进度影响。
 
 这阶段请求处理的流程如下
-<div class="mermaid" style="min-width: 100px">
+<div class="mermaid" style="min-height: 100px">
     sequenceDiagram
         浏览器 ->> Nginx: 发起请求
         Nginx ->> 静态资源: 查找静态资源文件
