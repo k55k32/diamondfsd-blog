@@ -196,4 +196,4 @@ public class FastMvcResponseBodyAwareAdvice implements ResponseBodyAdvice<Object
 
 }
 ```
-<script>mermaid.initialize({startOnLoad:true});</script>
+<script>mermaid.initialize();</script>

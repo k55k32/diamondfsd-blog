@@ -85,4 +85,4 @@ SVN在当时，是很流行的版本控制工具，作为一个中小型的项�
 
 前后端分离是趋势所在，技术更新换代更是无时无刻不在进行。就像Typescript慢慢替代Javascript成为前端首选，Serverless的概念开始被投入生产使用。保持自己的技术跟得上时代，能够及时接纳变化和学习包容，才是提升自己核心竞争力的所在。愿共勉
 
-<script>mermaid.initialize({startOnLoad:true});</script>
+<script>mermaid.initialize();</script>
