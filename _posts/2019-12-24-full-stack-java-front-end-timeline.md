@@ -7,11 +7,10 @@ img:
 tags: [Struts,Struts2,Spring,Spring-mvc,Spring-boot,vue,typescript,es5,es6,nginx,front-end,Java]
 ---
 <script src="https://cdn.bootcss.com/mermaid/8.0.0/mermaid.min.js"></script>
-<script>window.onload = function() {
-    mermaid.initialize({startOnLoad:true});
-}</script>
 
-我刚开始接触Java的时候主要web端框架是Struts，那时还没有什么前后端分离，还不太流行MVVM框架。 作为一个Java程序员，懂得最多的还是如何用jsp+jquery+easyui来写一个OA系统，需要知道如何一些tomcat的配置，还有对于服务器的一些操作等等。那时的全栈工程师，就是Java+jsp+配置工程师，配置主要是Spring+Struts+ibatis的大量xml配置。套模板，写脚本，复制粘贴easy-ui上的组件代码等。以Java为主的后台系统开发体系中，基本没有专门的前端岗位，都是后端开发全包的这样一个状态。那时候中小型公司都不会招专门的前端，如果真的需要一些比较复杂美观度要求比较高的页面，可能会将这部分开发工作外包出去，后端程序员再将写好的前端页面复制到项目中改成jsp，其中一些内容替换成jsp标签，在调整一下Javascript交互等等操作，一个项目就可以进入测试上线了。在当时，这就是大多数Java程序员的开发模式。
+我刚开始接触Java的时候主要web端框架是Struts，那时还没有什么前后端分离，还不太流行MVVM框架。 作为一个Java程序员，懂得最多的还是如何用jsp+jquery+easyui来写一个OA系统，需要知道如何一些tomcat的配置，还有对于服务器的一些操作等等。那时的全栈工程师，就是Java+jsp+配置工程师，配置主要是Spring+Struts+ibatis的大量xml配置。套模板，写脚本，复制粘贴easy-ui上的组件代码等。以Java为主的后台系统开发体系中，基本没有专门的前端岗位，都是后端开发全包的这样一个状态。
+
+那时候中小型公司都不会招专门的前端，如果真的需要一些比较复杂美观度要求比较高的页面，可能会将这部分开发工作外包出去，后端程序员再将写好的前端页面复制到项目中改成jsp，其中一些内容替换成jsp标签，在调整一下Javascript交互等等操作，一个项目就可以进入测试上线了。在当时，这就是大多数Java程序员的开发模式。
 
 对于Struts中的一个Action成员变量多如牛毛，引用的地方不计其数，改一处动全身，再加上爆出一些严重的漏洞情况下。SpringMVC开始异军突起，注解式的路径映射，以方法为单位的请求处理，简洁明了的请求定义，开发易上手，易操作，很快的让人开始慢慢抛弃Struts，投入SpringMVC的怀抱。从Struts到SpringMVC的转变中，也只是web层后端框架的选择，开发模式还是和以前一样，前端工程师帮忙做些页面，后端将其转成jsp。然后打成war包，部署到tomcat上，开发流程就完了。
 
@@ -85,3 +84,5 @@ SVN在当时，是很流行的版本控制工具，作为一个中小型的项�
 </div>
 
 前后端分离是趋势所在，技术更新换代更是无时无刻不在进行。就像Typescript慢慢替代Javascript成为前端首选，Serverless的概念开始被投入生产使用。保持自己的技术跟得上时代，能够及时接纳变化和学习包容，才是提升自己核心竞争力的所在。愿共勉
+
+<script>mermaid.initialize({startOnLoad:true});</script>
