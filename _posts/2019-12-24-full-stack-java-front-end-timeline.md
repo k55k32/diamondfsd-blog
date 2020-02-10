@@ -2,7 +2,7 @@
 layout: post
 title: Java全栈开发 - 前端技术更新换代之路
 date: 2019-12-24 11:28:45
-description: ""
+description: "我刚开始接触Java的时候主要web端框架是Struts，那时还没有什么前后端分离，还不太流行MVVM框架。 作为一个Java程序员，懂得最多的还是如何用jsp+jquery+easyui来写一个OA系统，需要知道如何一些tomcat的配置，还有对于服务器的一些操作等等。那时的全栈工程师，就是Java+jsp+配置工程师，配置主要是Spring+Struts+ibatis的大量xml配置。套模板，写脚本，复制粘贴easy-ui上的组件代码等..."
 img:
 tags: [Struts,Struts2,Spring,Spring-mvc,Spring-boot,vue,typescript,es5,es6,nginx,front-end,Java]
 ---
