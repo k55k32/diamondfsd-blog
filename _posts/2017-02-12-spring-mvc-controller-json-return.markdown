@@ -2,7 +2,7 @@
 layout: post
 title: Spring MVC 更灵活的控制 json 返回（自定义过滤字段）
 date: 2017-02-12 11:41:53 +0800
-description: "这篇文章主要讲 Spring MVC 如何动态的去返回 Json 数据  在我们做 Web 接口开发的时候， 经常会遇到这种场景。  两个请求，返回同一个对象，但是需要的返回字段并不相同。如以下场景  /** * 返回所有名称以及Id */ @RequestMapping("list") @ResponseBody public List<Article> findAllNameAndId() {   return articleService.findAll(); }  /** * 返回所有目录详情 */ @RequestMapping("list-detail") @ResponseBod"
+description: "这篇文章主要讲 Spring MVC 如何动态的去返回 Json 数据  在我们做 Web 接口开发的时候， 经常会遇到这种场景。  两个请求，返回同一个对象，但是需要的返回字段并不相同。如以下场景..."
 img:
 tags: [jackson 动态过滤字段,Spring MVC 动态返回 JSON,HandlerMethodReturnValueHandler教程,SpringMVC动态过滤字段]
 ---

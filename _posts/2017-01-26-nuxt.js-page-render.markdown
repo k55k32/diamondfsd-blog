@@ -2,7 +2,7 @@
 layout: post
 title: Nuxt.js教程之 —— 页面渲染详解
 date: 2017-01-26 11:42:27 +0800
-description: "Nuxt 的视图其实就是一个Vue 组件，不过Nuxt 定制了一些特殊的方法，让我们来更加全面的渲染我们的页面。  这里来讲解一下博客首页 index.vue 的组成  <template lang="pug"> .container   article-list(:page="page") </template>  <script> import service from '../service/ArticleService' import ArticleList from '~components/article/ArticleList' export default{   compone"
+description: "Nuxt 的视图其实就是一个Vue 组件，不过Nuxt 定制了一些特殊的方法，让我们来更加全面的渲染我们的页面"
 img:
 tags: [nuxt,nuxt教程,nuxt.js教程,nuxtjs教程,nuxt.js]
 ---
