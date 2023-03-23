@@ -11,7 +11,7 @@ Midjourney是一款功能强大的AI绘画工具，可以绘制出多种风格�
 
 ## 步骤1：进入Midjourney官网
 
-打开Midjourney官网主页：https://www.midjourney.com/，点击右下角的"Join the beta"按钮。
+打开Midjourney官网主页：https://www.midjourney.com/ 点击右下角的"Join the beta"按钮。
 
 ![Midjourney官网截图](/assets/img/ai-draw/begin.png)
 
