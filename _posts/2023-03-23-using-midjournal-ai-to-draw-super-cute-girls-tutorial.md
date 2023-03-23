@@ -4,13 +4,11 @@ title: 使用Midjourney AI绘制超可爱的精灵女孩教程
 date: 2023-03-23 08:33:33
 description: "本教程介绍如何使用Midjourney AI绘制超可爱的精灵女孩。包括注册Midjourney，创建自己的服务器，授权MidjourneyBot机器人等详细步骤。通过简单的命令即可开始创作出色的绘画作品。"
 img: ai-draw/elf_girl.png
-tags: [Midjourney,AI绘画,教程,精灵女孩,创作,设计,工具,命令,机器人,AI画图,人工智能,机器学习,计算机视觉,深度学习,图像处理,创意设计,数字艺术,技巧与技术,图像生成,图像修复]
+tags: [Midjourney,AI绘画,教程,精灵女孩,创作,设计,工具,命令,机器人,AI画图,人工智能,机器学习,计算机视觉,深度学习,图像处理,创意设计,数字艺术,技巧与技术,图像生成,图像修复,免费AI绘画,免费Midjourney]
 ---
 
-
-使用Midjourney AI绘制超可爱的精灵女孩教程
-
 Midjourney是一款功能强大的AI绘画工具，可以绘制出多种风格的作品。下面是使用Midjourney绘制超可爱的精灵女孩的详细教程。
+
 ## 步骤1：进入Midjourney官网
 
 打开Midjourney官网主页：https://www.midjourney.com/，点击右下角的"Join the beta"按钮。
@@ -56,3 +54,4 @@ Midjourney是discord.com网站上的一个机器人。点击"接受邀请"，然
 ## 小结
 
 Midjourney是一款非常实用的AI绘画工具，让你可以轻松绘制出多种风格的作品。通过上述步骤，你可以很快上手使用Midjourney，享受绘画的乐趣。
+通过这样注册的账户是免费的Midjourney账户，一共可以生成25次图片，输入指令，或者点击图片修改，都算一次。如果需要使用更多次就需要订阅了
