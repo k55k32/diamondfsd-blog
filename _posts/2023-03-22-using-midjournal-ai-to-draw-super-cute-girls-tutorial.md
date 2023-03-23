@@ -37,6 +37,8 @@ Midjourney是discord.com网站上的一个机器人。点击"接受邀请"，然
 
 ![添加MidjourneyBot机器人截图](/assets/img/ai-draw/add-robot2.png)
 
+![添加MidjourneyBot机器人截图](/assets/img/ai-draw/add-success.png)
+
 
 ![进入服务器](/assets/img/ai-draw/open-server.png)
 
