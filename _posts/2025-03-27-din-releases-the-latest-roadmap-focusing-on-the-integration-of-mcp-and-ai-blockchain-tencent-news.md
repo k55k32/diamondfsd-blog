@@ -2,14 +2,8 @@
 layout: post
 title: 大模型MCP协议
 date: 2025-03-27 09:03 23:59
-description: "# MCP协议：AI与区块链融合的未来之路
-
-## 引言
-
-![MCP与AI区块链集成](https://s.coze.cn/t/NZOzMEFyHeY/ "MCP与AI区块链集成")
-
-*模型上下文"
-tags: []
+description: "模型上下文协议(MCP)*正在重塑人工智能领域的技术格局"
+tags: [MCP,大模型,AI,OPENAI]
 ---
 
 # MCP协议：AI与区块链融合的未来之路
