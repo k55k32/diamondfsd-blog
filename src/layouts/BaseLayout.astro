@@ -5,15 +5,16 @@ import SeoHead from "../components/SeoHead.astro";
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
 }
 
-const { title = "Diamond-Blog", description = "" } = Astro.props;
+const { title = "Diamond-Blog", description = "", canonicalUrl } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <SeoHead title={title} description={description} />
+    <SeoHead title={title} description={description} canonicalUrl={canonicalUrl} />
   </head>
   <body>
     <slot />

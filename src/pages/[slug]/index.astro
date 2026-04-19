@@ -18,7 +18,11 @@ if (!post) {
 const html = marked.parse(post.body);
 ---
 
-<BaseLayout title={post.title} description={post.description}>
+<BaseLayout
+  title={post.title}
+  description={post.description}
+  canonicalUrl={`https://diamondfsd.com/${post.slug}/`}
+>
   <main>
     <article>
       <h1>{post.title}</h1>
