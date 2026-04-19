@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "migrate:posts": "node scripts/migrate-posts.mjs",
+    "validate:routes": "node scripts/validate-routes.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",
