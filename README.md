@@ -1,7 +1,11 @@
 # Diamond Zhou's Blog
 
-# rebuild copyright
+Legacy blog repository currently being migrated from Jekyll to Astro while keeping GitHub Pages and the existing production domain.
 
-### License
+## Migration Status
+
+Astro scaffold in progress.
+
+## License
 
 GNU General Public License v3.0

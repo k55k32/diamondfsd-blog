@@ -1,0 +1,20 @@
+---
+import SeoHead from "../components/SeoHead.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Diamond-Blog", description = "" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SeoHead title={title} description={description} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
