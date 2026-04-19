@@ -36,3 +36,8 @@ export async function getAllPosts(): Promise<PostRecord[]> {
     .filter((post) => !post.draft)
     .sort((left, right) => right.date.localeCompare(left.date));
 }
+
+export async function getPostBySlug(slug: string): Promise<PostRecord | undefined> {
+  const posts = await getAllPosts();
+  return posts.find((post) => post.slug === slug);
+}

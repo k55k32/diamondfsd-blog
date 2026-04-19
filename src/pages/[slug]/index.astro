@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { marked } from "marked";
+import { getAllPosts, getPostBySlug } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug ?? "");
+
+if (!post) {
+  throw new Error(`Missing post for slug: ${slug}`);
+}
+
+const html = marked.parse(post.body);
+---
+
+<BaseLayout title={post.title} description={post.description}>
+  <main>
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.date}</p>
+      <Fragment set:html={html} />
+    </article>
+  </main>
+</BaseLayout>
