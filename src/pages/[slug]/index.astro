@@ -23,8 +23,8 @@ const html = marked.parse(post.body);
   description={post.description}
   canonicalUrl={`https://diamondfsd.com/${post.slug}/`}
 >
-  <main>
-    <article>
+  <main class="post-page">
+    <article class="post-content">
       <h1>{post.title}</h1>
       <p>{post.date}</p>
       <Fragment set:html={html} />

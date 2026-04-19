@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import AdSense from "../components/AdSense.astro";
+import Analytics from "../components/Analytics.astro";
 import SeoHead from "../components/SeoHead.astro";
 
 interface Props {
@@ -15,6 +17,8 @@ const { title = "Diamond-Blog", description = "", canonicalUrl } = Astro.props;
 <html lang="zh-CN">
   <head>
     <SeoHead title={title} description={description} canonicalUrl={canonicalUrl} />
+    <AdSense />
+    <Analytics />
   </head>
   <body>
     <slot />
