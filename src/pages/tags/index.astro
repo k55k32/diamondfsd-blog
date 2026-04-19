@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllPosts } from "../../lib/posts";
+
+const posts = await getAllPosts();
+const tags = [...new Set(posts.flatMap((post) => post.tags))].sort();
+---
+
+<BaseLayout
+  title="Tags - Diamond-Blog"
+  description="Tags"
+  canonicalUrl="https://diamondfsd.com/tags/"
+>
+  <main>
+    <h1>Tags</h1>
+    {tags.map((tag) => (
+      <section id={tag}>
+        <h2>#{tag}</h2>
+        <ul>
+          {posts
+            .filter((post) => post.tags.includes(tag))
+            .map((post) => (
+              <li><a href={`/${post.slug}/`}>{post.title}</a></li>
+            ))}
+        </ul>
+      </section>
+    ))}
+  </main>
+</BaseLayout>

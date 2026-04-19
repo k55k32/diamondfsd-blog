@@ -14,7 +14,15 @@ const posts = await getAllPosts();
     <h1>Diamond-Blog</h1>
     <ul>
       {posts.map((post) => (
-        <li><a href={`/${post.slug}/`}>{post.title}</a></li>
+        <li>
+          <a href={`/${post.slug}/`}>{post.title}</a>
+          <p>{post.description}</p>
+          <div>
+            {post.tags.map((tag) => (
+              <a href={`/tags/#${tag}`}>#{tag}</a>
+            ))}
+          </div>
+        </li>
       ))}
     </ul>
   </main>
