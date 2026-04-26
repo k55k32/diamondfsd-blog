@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "node scripts/astro-dev-wsl.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
