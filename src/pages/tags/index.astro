@@ -3,27 +3,72 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllPosts } from "../../lib/posts";
 
 const posts = await getAllPosts();
-const tags = [...new Set(posts.flatMap((post) => post.tags))].sort();
+const tagMap = new Map<string, typeof posts>();
+posts.forEach((post) => {
+  post.tags.forEach((tag) => {
+    if (!tagMap.has(tag)) tagMap.set(tag, []);
+    tagMap.get(tag)!.push(post);
+  });
+});
+const tags = [...tagMap.keys()].sort();
 ---
 
 <BaseLayout
   title="Tags - Diamond-Blog"
-  description="Tags"
+  description="Browse all tags"
   canonicalUrl="https://diamondfsd.com/tags/"
 >
-  <main>
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <header class="site-header">
     <h1>Tags</h1>
-    {tags.map((tag) => (
-      <section id={tag}>
-        <h2>#{tag}</h2>
-        <ul>
-          {posts
-            .filter((post) => post.tags.includes(tag))
-            .map((post) => (
-              <li><a href={`/${post.slug}/`}>{post.title}</a></li>
-            ))}
-        </ul>
-      </section>
-    ))}
-  </main>
+    <p class="description">
+      浏览所有技术标签，快速找到感兴趣的主题。
+    </p>
+    <nav class="site-nav">
+      <a href="/">技术</a>
+      <a href="/tags/" class="active">标签</a>
+      <a href="/rss.xml">RSS</a>
+    </nav>
+  </header>
+
+  <div class="content-canvas">
+    <div class="content-canvas-inner">
+      <div class="tags-page">
+        {tags.map((tag) => (
+          <section class="tag-group" id={tag}>
+            <h2>#{tag} <span style="font-weight:400; font-size:0.875rem; color:var(--outline); margin-left:0.5rem;">({tagMap.get(tag)?.length})</span></h2>
+            <div class="tag-posts">
+              {tagMap.get(tag)?.map((post) => (
+                <a href={`/${post.slug}/`}>{post.title}</a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="copyright">© {new Date().getFullYear()} Diamond-Blog. Built with Zen Modernism philosophy.</div>
+      <div class="footer-links">
+        <a href="https://github.com/diamondfsd" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="/rss.xml">RSS订阅</a>
+        <a href="/">首页</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const bar = document.getElementById('readingProgress');
+    if (bar) {
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = `${Math.min(progress, 100)}%`;
+      }, { passive: true });
+    }
+  </script>
 </BaseLayout>

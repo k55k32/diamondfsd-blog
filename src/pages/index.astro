@@ -3,27 +3,202 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getAllPosts } from "../lib/posts";
 
 const posts = await getAllPosts();
+const recentPosts = posts.slice(0, 6);
+
+function readTime(body: string): number {
+  const words = body.split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return "";
+  const match = dateStr.match(/^(\d{4}-\d{2}-\d{2})/);
+  return match ? match[1] : dateStr;
+}
+
+function getCategoryFromTags(tags: string[]): string {
+  const primary = tags.find(t =>
+    /react|next|vue|angular|svelte|frontend|ui/i.test(t)
+  ) || tags.find(t =>
+    /rust|go|java|python|node|backend|server/i.test(t)
+  ) || tags.find(t =>
+    /ai|ml|data|algorithm|model/i.test(t)
+  );
+  if (primary) {
+    return primary.toUpperCase();
+  }
+  return tags[0]?.toUpperCase() || "BLOG";
+}
+
+const siteAuthor = {
+  name: "Diamond Zhou",
+  title: "Software Engineer",
+  bio: "专注于人工智能、数字化转型与前沿技术。在这里记录关于 AI、大模型、数字化转型的深度思考与实践心得。",
+  avatar: "",
+  github: "https://github.com/diamondfsd",
+  rss: "/rss.xml",
+  email: "mailto:diamond@diamondfsd.com",
+  projects: [
+    { name: "diamondfsd-blog", lang: "Astro", desc: "Personal tech blog built with Astro." },
+    { name: "ai-tech-observer", lang: "TypeScript", desc: "AI technology trend tracker & aggregator." },
+  ],
+  techStack: ["AI", "TypeScript", "Python", "React", "Node.js", "Docker", "Kubernetes", "PostgreSQL"],
+};
 ---
 
 <BaseLayout
   title="Diamond-Blog"
-  description="Diamond Zhou's blog"
+  description="探索 AI 技术、数字化转型与前沿趋势。极简主义阅读体验。"
   canonicalUrl="https://diamondfsd.com/"
 >
-  <main>
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Header / Hero -->
+  <header class="site-header">
     <h1>Diamond-Blog</h1>
-    <ul>
-      {posts.map((post) => (
-        <li>
-          <a href={`/${post.slug}/`}>{post.title}</a>
-          <p>{post.description}</p>
-          <div>
-            {post.tags.map((tag) => (
-              <a href={`/tags/#${tag}`}>#{tag}</a>
-            ))}
+    <p class="description">
+      探索 AI 技术、数字化转型与前沿趋势。这里记录了关于大模型、智能体、产业创新等深度思考，秉持极简主义哲学，追求纯粹的阅读与学习体验。
+    </p>
+    <nav class="site-nav">
+      <a href="/" class="active">技术</a>
+      <a href="/tags/">标签</a>
+      <a href="/rss.xml">RSS</a>
+    </nav>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <div class="content-canvas">
+    <div class="content-canvas-inner">
+      <div class="layout-grid">
+        <!-- Left Column: Article Feed -->
+        <section class="article-feed">
+          {recentPosts.map((post) => (
+            <article class="article-card">
+              <a href={`/${post.slug}/`}>
+                <div class="article-image-wrap">
+                  {post.img ? (
+                    <img src={post.img} alt={post.title} loading="lazy" />
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9" fill="none" class="w-full h-full" style="background: linear-gradient(135deg, var(--surface-container) 0%, var(--secondary-container) 100%);">
+                      <rect width="16" height="9" rx="0.5" fill="url(#grad)" />
+                      <defs>
+                        <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stop-color="#eeeeef" />
+                          <stop offset="100%" stop-color="#d4e2e6" />
+                        </linearGradient>
+                      </defs>
+                      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#72787c" font-family="monospace" font-size="1.2" font-weight="700" letter-spacing="0.2">
+                        {getCategoryFromTags(post.tags)}
+                      </text>
+                    </svg>
+                  )}
+                </div>
+                <span class="article-tag">{getCategoryFromTags(post.tags)}</span>
+                <h2 class="article-title">{post.title}</h2>
+                <p class="article-excerpt">{post.description}</p>
+                <div class="article-meta">
+                  <span class="meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    {formatDate(post.date)}
+                  </span>
+                  <span class="meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {readTime(post.body)} min read
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </section>
+
+        <!-- Right Column: Sidebar -->
+        <aside class="sidebar">
+          <!-- Author Profile -->
+          <div class="author-profile">
+            <div class="author-header">
+              <div class="author-avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                  <circle cx="32" cy="32" r="32" fill="#d4e2e6" />
+                  <circle cx="32" cy="26" r="12" fill="#72787c" />
+                  <ellipse cx="32" cy="58" rx="20" ry="16" fill="#72787c" />
+                </svg>
+              </div>
+              <div>
+                <div class="author-name">{siteAuthor.name}</div>
+                <div class="author-title">{siteAuthor.title}</div>
+              </div>
+            </div>
+            <p class="author-bio">{siteAuthor.bio}</p>
+            <div class="social-links">
+              <a href={siteAuthor.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href={siteAuthor.rss} title="RSS">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+              </a>
+              <a href={siteAuthor.email} title="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </a>
+            </div>
           </div>
-        </li>
-      ))}
-    </ul>
-  </main>
+
+          <!-- Open Source Projects -->
+          <div class="sidebar-section">
+            <h4>Open Source</h4>
+            <div class="project-list">
+              {siteAuthor.projects.map((proj) => (
+                <a class="project-card" href={`https://github.com/${siteAuthor.name.toLowerCase().replace(' ', '')}`} target="_blank" rel="noopener noreferrer">
+                  <div class="project-header">
+                    <span class="project-name">{proj.name}</span>
+                    <span class="project-lang">{proj.lang}</span>
+                  </div>
+                  <p class="project-desc">{proj.desc}</p>
+                </a>
+              ))}
+              <div class="view-more">
+                <a href={siteAuthor.github} target="_blank" rel="noopener noreferrer">View GitHub →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Stack -->
+          <div class="sidebar-section">
+            <h4>Stack</h4>
+            <div class="tech-tags">
+              {siteAuthor.techStack.map((tech) => (
+                <span class="tag">#{tech}</span>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="copyright">© {new Date().getFullYear()} Diamond-Blog. Built with Zen Modernism philosophy.</div>
+      <div class="footer-links">
+        <a href={siteAuthor.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="/rss.xml">RSS订阅</a>
+        <a href={siteAuthor.email}>邮件通讯</a>
+        <a href="/tags/">标签</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('readingProgress');
+    if (bar) {
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = `${Math.min(progress, 100)}%`;
+      }, { passive: true });
+    }
+  </script>
 </BaseLayout>

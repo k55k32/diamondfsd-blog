@@ -16,6 +16,17 @@ if (!post) {
 }
 
 const html = marked.parse(post.body);
+
+function readTime(body: string): number {
+  const words = body.split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return "";
+  const match = dateStr.match(/^(\d{4}-\d{2}-\d{2})/);
+  return match ? match[1] : dateStr;
+}
 ---
 
 <BaseLayout
@@ -23,11 +34,49 @@ const html = marked.parse(post.body);
   description={post.description}
   canonicalUrl={`https://diamondfsd.com/${post.slug}/`}
 >
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <header class="post-header">
+    <a href="/" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      返回首页
+    </a>
+    <h1>{post.title}</h1>
+    <div class="post-meta-line">
+      <span>{formatDate(post.date)}</span>
+      <span>{readTime(post.body)} min read</span>
+    </div>
+  </header>
+
   <main class="post-page">
     <article class="post-content">
-      <h1>{post.title}</h1>
-      <p>{post.date}</p>
       <Fragment set:html={html} />
     </article>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="copyright">© {new Date().getFullYear()} Diamond-Blog. Built with Zen Modernism philosophy.</div>
+      <div class="footer-links">
+        <a href="https://github.com/diamondfsd" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="/rss.xml">RSS订阅</a>
+        <a href="/tags/">标签</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar for article pages
+    const bar = document.getElementById('readingProgress');
+    if (bar) {
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = `${Math.min(progress, 100)}%`;
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    }
+  </script>
 </BaseLayout>
