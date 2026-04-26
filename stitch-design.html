@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Fira+Code:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#3c494d",
+                        "tertiary-container": "#866040",
+                        "surface-container-high": "#e8e8e9",
+                        "on-primary-fixed-variant": "#284b59",
+                        "surface-bright": "#faf9fa",
+                        "surface-variant": "#e2e2e3",
+                        "tertiary-fixed-dim": "#edbd97",
+                        "primary": "#315563",
+                        "on-background": "#1a1c1d",
+                        "primary-fixed-dim": "#a8ccdd",
+                        "secondary": "#536164",
+                        "background": "#faf9fa",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeeef",
+                        "outline": "#72787c",
+                        "tertiary": "#6b482a",
+                        "on-tertiary-fixed-variant": "#613f22",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c1c7cb",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f0f1",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#2e1500",
+                        "on-surface": "#1a1c1d",
+                        "surface-container-low": "#f4f3f4",
+                        "on-secondary-container": "#576569",
+                        "secondary-fixed-dim": "#bbc9cd",
+                        "primary-fixed": "#c3e8fa",
+                        "inverse-primary": "#a8ccdd",
+                        "tertiary-fixed": "#ffdcc2",
+                        "surface-container-highest": "#e2e2e3",
+                        "on-secondary-fixed": "#101e21",
+                        "inverse-surface": "#2f3132",
+                        "on-primary-fixed": "#001f29",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#406372",
+                        "surface-dim": "#dadadb",
+                        "surface": "#faf9fa",
+                        "secondary-fixed": "#d7e5e9",
+                        "primary-container": "#4a6d7c",
+                        "on-primary-container": "#caeeff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#41484b",
+                        "on-tertiary-container": "#ffe3ce",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d4e2e6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "2rem",
+                        "reading-column-max-width": "720px",
+                        "stack-md": "1.5rem",
+                        "section-gap": "6rem",
+                        "container-max-width": "1120px",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "3rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-xl": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono": ["Fira Code", "monospace"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-xl": ["42px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.8", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #faf9fa; }
+        .grid-bg {
+            background-image: radial-gradient(#e2e2e3 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .article-card:hover .article-image { transform: scale(1.02); }
+        .article-card:hover .article-title { color: #315563; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Reading Progress Bar -->
+<div class="fixed top-0 left-0 h-[2px] bg-primary z-[60]" style="width: 35%;"></div>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-24 grid-bg min-h-screen">
+<div class="max-w-[1120px] mx-auto px-8">
+<!-- Introduction Section -->
+<section class="mb-20 space-y-4">
+<h1 class="text-headline-xl font-headline-xl tracking-tighter">极简博文</h1>
+<p class="max-w-2xl text-on-surface-variant text-body-lg leading-relaxed">
+                    探索技术、设计与生活的交汇点。这里记录了关于 Rust、Go、React 以及分布式系统的深度思考与实践心得，秉持极简主义哲学，追求纯粹的阅读与学习体验。
+                </p>
+<div class="flex items-center gap-6 pt-2">
+<nav class="flex items-center gap-8">
+<a class="text-slate-900 dark:text-slate-50 font-semibold border-b border-slate-900 dark:border-slate-50 pb-1 font-label-sm text-label-sm" href="#">技术</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 pb-1 transition-all font-label-sm text-label-sm" href="#">设计</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 pb-1 transition-all font-label-sm text-label-sm" href="#">生活</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 pb-1 transition-all font-label-sm text-label-sm" href="#">关于</a>
+</nav>
+</div>
+</section>
+<div class="flex flex-col md:flex-row gap-16">
+<!-- Left Column: Post Feed -->
+<section class="flex-1 space-y-16">
+<!-- Post 1 -->
+<article class="article-card group">
+<div class="aspect-video overflow-hidden mb-6 bg-surface-container rounded-sm border border-outline-variant/30">
+<img alt="React Architecture" class="article-image w-full h-full object-cover transition-transform duration-700" data-alt="Modern abstract representation of React component architecture with glowing blue lines and geometric shapes on a dark minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ0qePTy8yCp3tyEOsUeoChgB1TWW5aEvZAiUk00Q0UcabbvmOtSP5McsQDF2CvNiuFuehKgz5ZNGZDQPGo92OhTqoRXIe13GSsx30-IcozTM6jCMmU7mYigOzI_u7x2X1wtUqOmYUzE9XO-2G-V4w-5mZMQ4ohNaT66ItHO4f26mIu1lk6aoiyQzjINJ9UpdMwGSFI-sUwUgH1d4oTeK_oKQHykNcR-qPQHI-rOlG-SJ8G6DckTXzySnknB0QktdIx9_UYRrE0No"/>
+</div>
+<div class="space-y-4">
+<span class="font-mono text-[11px] uppercase tracking-widest text-primary font-bold">React / Architecture</span>
+<h2 class="article-title font-headline-lg text-headline-lg text-on-surface transition-colors cursor-pointer">
+                                深入理解高性能 React 架构设计
+                            </h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg line-clamp-3">
+                                在构建大规模前端应用时，状态管理与组件渲染的平衡至关重要。本文将探讨如何利用组合模式、Memoization 以及并发模式（Concurrent Mode）来优化复杂的业务流程。
+                            </p>
+<div class="flex items-center gap-4 pt-2 text-outline font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> 2024-05-12</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 12 min read</span>
+</div>
+</div>
+</article>
+<!-- Post 2 -->
+<article class="article-card group">
+<div class="aspect-video overflow-hidden mb-6 bg-surface-container rounded-sm border border-outline-variant/30">
+<img alt="Rust Language" class="article-image w-full h-full object-cover transition-transform duration-700" data-alt="Macro photography of rusty industrial steel pipes with dramatic lighting and shallow depth of field, focusing on texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaPjn_Zp6G6E2Hy7LPjCbsX8FCu9JgSRrIMXrK_NAyVhizaAgWOymvN7pOZm0SZb6PkBfpyLUcEB3cDPBXcinWecziFUsJjnrP8qpBTiS6nbiFviZ-ssZa_OZVoogO8PilweAAzQPiiRnOIi9gpjnNvhn7A8oGYFKXgRqiF3eMakcov0NxgI-jcgDfi7pmp1upLNggk47WJ749t0oZC1g2QYb3v8xVFMcgm-ypcKLx42BsGZUvq73jk0ARBtkfp68MLWyUndLVVFc"/>
+</div>
+<div class="space-y-4">
+<span class="font-mono text-[11px] uppercase tracking-widest text-primary font-bold">Rust / Systems</span>
+<h2 class="article-title font-headline-lg text-headline-lg text-on-surface transition-colors cursor-pointer">
+                                从 C++ 到 Rust：内存安全的必然演进
+                            </h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg line-clamp-3">
+                                Rust 并不是要取代 C++，而是为现代系统级编程提供了一个更安全的选项。通过所有权系统（Ownership）和借用检查器，我们可以在编译期消除绝大多数并发错误。
+                            </p>
+<div class="flex items-center gap-4 pt-2 text-outline font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> 2024-04-28</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 18 min read</span>
+</div>
+</div>
+</article>
+<!-- Post 3 -->
+<article class="article-card group">
+<div class="aspect-video overflow-hidden mb-6 bg-surface-container rounded-sm border border-outline-variant/30">
+<img alt="Go Microservices" class="article-image w-full h-full object-cover transition-transform duration-700" data-alt="Clean computer code displayed on a high-resolution screen in a dark room with subtle blue and purple ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4JxxIW_fEP-4bRnC5P1nmxbwtjWY1xA4UHWAnj-opN8TtFtuJ0AH39S4big-G6buRpvGkJzt8Z26WryJLn4AEJ4azUtF8VVoOIsH6WHaDgJOP6cW1OPkgUjwcyeueVsjJzetkCr9gqbtzbbVZ9nRIZQryXpyKUnFz8000gPLun3qi5CV9ujmLut-8-CXl5p28RcqmO63s8a2k0wdId3NLW2NkX8l3mrerXGgGvvAwFZADOEKDJNwsuy-4GouRg9BYQEpLZ0_MxFU"/>
+</div>
+<div class="space-y-4">
+<span class="font-mono text-[11px] uppercase tracking-widest text-primary font-bold">Go / Backend</span>
+<h2 class="article-title font-headline-lg text-headline-lg text-on-surface transition-colors cursor-pointer">
+                                Go 微服务治理：从熔断到限流的实战经验
+                            </h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg line-clamp-3">
+                                当服务拆分到一定规模，网络波动和下游级联故障成为必然。我们将分析如何利用 Go 原生并发特性结合中间件实现稳健的自愈系统。
+                            </p>
+<div class="flex items-center gap-4 pt-2 text-outline font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> 2024-04-15</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 8 min read</span>
+</div>
+</div>
+</article>
+</section>
+<!-- Right Column: Sidebar -->
+<aside class="w-full md:w-80 space-y-12">
+<!-- Author Profile -->
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-outline-variant">
+<img alt="木木" class="w-full h-full object-cover" data-alt="Close-up portrait of a thoughtful young man in a minimalist workspace, natural lighting, looking slightly away from camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANK3TcbSgJ423S_Xft8CX6ywVeow9Q364MCf9csAS2MOxNT2wqCJwHz6T9GrnIxjY8SzkjUrfhks-s9F98z6YcH0ZJJyH5ptNjAu405G_satKLiBlOSHDtBosQv2UoDdNkAHvY8icNtUC4dMTQvAIfry3R1uuZ7Paq7W53ryoRCuWRv1xo4O9sqZX9aAKQV01XtJHrX4CVuQLpZrDdDG2950crLdy3wicJjhc1oASIPG2tyG8xWTljF_UcUfLBUv9G_CEMx75BBcA"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">木木</h3>
+<p class="text-primary font-label-sm text-label-sm">Senior Engineer</p>
+</div>
+</div>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                            深耕分布式系统与前端架构，对底层技术充满热情的开发者。在这里分享关于 Rust、Go 以及 Web 核心技术的思考与实践。
+                        </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container border border-outline-variant hover:bg-primary-container hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container border border-outline-variant hover:bg-primary-container hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="rss_feed">rss_feed</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container border border-outline-variant hover:bg-primary-container hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</a>
+</div>
+</div>
+<!-- GitHub Contributions / Projects -->
+<div class="space-y-4">
+<h4 class="font-headline-md text-sm uppercase tracking-wider text-outline">Open Source</h4>
+<div class="space-y-3">
+<a class="block p-4 rounded-lg bg-white border border-outline-variant/30 hover:border-primary transition-all" href="#">
+<div class="flex justify-between items-start mb-1">
+<span class="font-mono text-sm font-bold">zen-editor</span>
+<span class="text-xs text-outline">Rust</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1">A lightweight Markdown editor built with Druid.</p>
+</a>
+<a class="block p-4 rounded-lg bg-white border border-outline-variant/30 hover:border-primary transition-all" href="#">
+<div class="flex justify-between items-start mb-1">
+<span class="font-mono text-sm font-bold">go-kit-auth</span>
+<span class="text-xs text-outline">Go</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-1">Auth middleware for go-kit microservices.</p>
+</a>
+<div class="pt-2 text-right">
+<a class="text-primary font-label-sm text-label-sm hover:underline" href="#">View GitHub →</a>
+</div>
+</div>
+</div>
+<!-- Tech Stack Tags -->
+<div class="space-y-4">
+<h4 class="font-headline-md text-sm uppercase tracking-wider text-outline">Stack</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#Nextjs</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#TypeScript</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#Rust</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#GoLang</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#Docker</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#Kubernetes</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-mono text-[12px] rounded-full">#Postgres</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 mt-24 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950">
+<div class="max-w-[720px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-[#4A6D7C] dark:text-[#7DA1B0] font-label-sm text-xs leading-relaxed tracking-wide text-center md:text-left">
+                © 2024 个人技术专栏. 基于 Zen Modernism 哲学构建.
+            </div>
+<div class="flex gap-6">
+<a class="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-label-sm text-xs transition-all duration-300" href="#">GitHub</a>
+<a class="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-label-sm text-xs transition-all duration-300" href="#">RSS订阅</a>
+<a class="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-label-sm text-xs transition-all duration-300" href="#">邮件通讯</a>
+<a class="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-label-sm text-xs transition-all duration-300" href="#">隐私政策</a>
+</div>
+</div>
+</footer>
+</body></html>
