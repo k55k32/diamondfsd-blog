@@ -10,7 +10,6 @@ tags:
   - github-webhooks教程
   - githook-express
   - 自动化部署
-img: abc07074-3bf1-40ca-8059-30dd5320965f.jpg
 date: '2017-02-13 21:33:11 +0800'
 ---
 我想要实现这样的功能，只要我 `push` 代码到 [github](https://github.com/k55k32/cms-front)仓库中，那么我的服务器就会自动执行预先写好的脚本。
@@ -26,7 +25,7 @@ date: '2017-02-13 21:33:11 +0800'
 我们每个github仓库可以都在  `Settings -> Webhooks -> Add webhooks` 配置 `Webhooks`。配置这个的作用就是让代码库有某些动作的时候，将这些信息提交到我们指定的服务器地址上。
 
 我个人代码库的配置信息如下
-![alt]({{site.baseurl}}/assets/img/ccab3b20-1528-42bd-a70b-65b3414f0350d)
+[图片已迁移]
 
 ### Payload URL
 用于接收 `Webhook` 请求的接口地址
@@ -92,7 +91,7 @@ X-Hub-Signature: sha1=******************************************
 [githook-express](https://github.com/k55k32/githook-express) 这是我写的一个小服务，用于接收并解析`webhook`请求，并通过配置文件，执行指定的脚本，实现自动编译部署发布等功能。
 
 而且这个服务在服务器上只占用了 33M 的内存，完全符合我目前的需求。
-![alt]({{site.baseurl}}/assets/img/df49f0c9-3f15-46df-bcca-792d66c67627f)
+[图片已迁移]
 
 ### 核心代码
 ```js

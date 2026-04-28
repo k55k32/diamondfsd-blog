@@ -76,10 +76,10 @@ class ModelDao extends BaseDao<Model,Long> implements IModelDao {}
 - 点击  Sign up 创建账号 
 - 新建一个问题类型为New Project的, 注意Group Id和自己项目pom.xml要一致，如果是自己的域名，需要有域名DNS管理权限，因为仓库管理员会要求你添加TXT记录指向指定地址。如果没有自己的域名，可以用自己的Github地址，管理员会要求你创建一个指定名称的仓库      
 
-![alt]({{site.baseurl}}/assets/post-img/2019-06-19/create.png)
+[图片已迁移]
 - 提交申请完成后，管理员就会通知你用户已经可以上传快照版本或者发布版本了     
 
-![alt]({{site.baseurl}}/assets/post-img/2019-06-19/issue-closed.png)   
+[图片已迁移]   
 
 前期注册工作就完成了，接下来是上传流程，接下来流程用到的用户名密码使用刚刚创建的用户名密码
 

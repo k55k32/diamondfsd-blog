@@ -12,7 +12,6 @@ tags:
   - 免费ssl证书
   - 升级https
   - Let's Encrypt 教程
-img: cca6c16d-43f9-4aae-b4aa-30398c925eb7.png
 date: '2017-01-22 18:59:58 +0800'
 ---
 这篇文章主要讲的就是如何让自己的网站免费从HTTP升级为HTTPS，使用的是 [Let's Encrypt](https://letsencrypt.org/)的证书。实际上也就是一个Let's Encrypt 免费证书获取教程 。
@@ -90,7 +89,7 @@ certbot certonly --standalone -d example.com -d www.example.com
 通过这些配置 我们就已经成功的完成了 Https 的启用。
 现在打开我的博客 [https://diamondfsd.com](https://diamondfsd.com)  就可以看到标有 `安全` 的字样。
 
-![alt]({{site.baseurl}}/assets/img/4312f4f1-bd6f-4b60-991d-80e8de186294G)
+[图片已迁移]
 
 ## 自动更新 SSL 证书
 配置完这些过后，我们的工作还没有完成。 Let's Encrypt 提供的证书只有90天的有效期，我们必须在证书到期之前，重新获取这些证书，certbot 给我们提供了一个很方便的命令，那就是 `certbot renew`。
@@ -102,7 +101,7 @@ certbot renew --dry-run
 我在运行的时候出现了这个错误
 > Attempting to renew cert from /etc/letsencrypt/renewal/api.diamondfsd.com.conf produced an unexpected error: At least one of the required ports is already taken.. Skipping.
 
-![alt]({{site.baseurl}}/assets/img/a9f7ee63-9fa4-4dab-902d-b8a46ac31b08y)
+[图片已迁移]
 这是因为我的api.diamondfsd.com生成证书的时候使用的是 `--standalone` 模式，验证域名的时候，需要启用443端口，这个错误的意思就是要启用的端口已经被占用了。 这时候我必须把`nginx`先关掉，才可以成功。果然，我先运行 `service nginx stop` 运行这个命令，就没有报错了，所有的证书都刷新成功。
 
 证书是90天才过期，我们只需要在过期之前执行更新操作就可以了。 这件事情就可以直接交给定时任务来完成。linux 系统上有 `cron` 可以来搞定这件事情。

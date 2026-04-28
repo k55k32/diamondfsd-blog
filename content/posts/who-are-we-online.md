@@ -7,7 +7,6 @@ tags:
   - 我们是谁
   - canvas实例
   - canvas
-img: 630b9da3-6b93-404f-8ea7-48f3c6a90e76.jpg
 date: '2017-08-20 11:22:38 +0800'
 ---
 主要就是用一张空白的图，然后使用canvas把用户输入的文字画上去，比较简单。
@@ -18,12 +17,12 @@ date: '2017-08-20 11:22:38 +0800'
 
 PC端
 
-![alt]({{site.baseurl}}/assets/img/038a1be7-cec2-4bfd-981c-ba218fd232d6.png)
+[图片已迁移]
 
 
 移动端
 
-![alt]({{site.baseurl}}/assets/img/5a125b94-9045-49ef-893a-09428201c912.png)
+[图片已迁移]
 
 
 

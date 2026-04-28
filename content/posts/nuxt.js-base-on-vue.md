@@ -35,7 +35,7 @@ npm install # Or yarn
 npm run dev
 ```
 使用以上命令，就可以启动一个简单的nuxtjs服务
-![alt]({{site.baseurl}}/assets/img/b233b98d-d849-424c-ade3-873ecd925730r)
+[图片已迁移]
 接下来在浏览器端输入`http://localhost:3000` 就可以进入nuxtjs为我们渲染的页面了
 
 

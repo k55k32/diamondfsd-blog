@@ -13,7 +13,6 @@ tags:
   - html
   - npm
   - vue
-img: 93ace93b-e84a-4cf7-a0b1-991d192ef194.jpg
 date: '2016-12-31 11:07:58 +0800'
 ---
 ## 博客项目地址

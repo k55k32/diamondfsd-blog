@@ -1,40 +1,49 @@
+import { getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
-import matter from "gray-matter";
-import type { PostFrontmatter, PostRecord } from "../types/post";
+import type { PostRecord } from "../types/post";
 
-const postsDir = path.resolve("content/posts");
+function extractImgPath(raw?: string): string | undefined {
+  if (!raw) return undefined;
+  const match = raw.match(/!\[.*?\]\((.+?)\)/);
+  return match ? match[1] : raw;
+}
 
-function normalizeFrontmatter(slug: string, frontmatter: PostFrontmatter, body: string): PostRecord {
-  return {
-    slug,
-    title: frontmatter.title ?? slug,
-    description: frontmatter.description ?? "",
-    tags: frontmatter.tags ?? [],
-    img: frontmatter.img,
-    draft: frontmatter.draft ?? false,
-    date: frontmatter.date ?? "",
-    body
-  };
+async function resolveImg(slug: string, rawImg?: string): Promise<string | undefined> {
+  const filename = extractImgPath(rawImg);
+  if (!filename) return undefined;
+
+  const srcPath = path.resolve("content/posts", filename);
+  const destDir = path.resolve("public/post-images");
+  const destPath = path.join(destDir, filename);
+
+  try {
+    await fs.access(srcPath);
+    await fs.mkdir(destDir, { recursive: true });
+    await fs.copyFile(srcPath, destPath);
+    return `/post-images/${filename}`;
+  } catch {
+    return undefined;
+  }
 }
 
 export async function getAllPosts(): Promise<PostRecord[]> {
-  const entries = await fs.readdir(postsDir, { withFileTypes: true }).catch(() => []);
-  const markdownFiles = entries.filter((entry) => entry.isFile() && entry.name.endsWith(".md"));
+  const entries = await getCollection("posts", ({ data }) => !data.draft);
 
   const posts = await Promise.all(
-    markdownFiles.map(async (entry) => {
-      const slug = entry.name.replace(/\.md$/, "");
-      const filePath = path.join(postsDir, entry.name);
-      const raw = await fs.readFile(filePath, "utf8");
-      const parsed = matter(raw);
-      return normalizeFrontmatter(slug, parsed.data as PostFrontmatter, parsed.content);
-    })
+    entries.map(async (entry) => ({
+      slug: entry.id,
+      title: entry.data.title,
+      description: entry.data.description,
+      tags: entry.data.tags,
+      img: await resolveImg(entry.id, entry.data.img),
+      draft: entry.data.draft,
+      date: entry.data.date,
+      body: entry.body ?? "",
+    }))
   );
 
-  return posts
-    .filter((post) => !post.draft)
-    .sort((left, right) => right.date.localeCompare(left.date));
+  return posts.sort((left, right) => right.date.localeCompare(left.date));
 }
 
 export async function getPostBySlug(slug: string): Promise<PostRecord | undefined> {

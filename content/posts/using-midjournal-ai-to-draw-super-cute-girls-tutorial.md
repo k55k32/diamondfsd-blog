@@ -26,7 +26,6 @@ tags:
   - 图像修复
   - 免费AI绘画
   - 免费Midjourney
-img: ai-draw/elf_girl.png
 date: '2023-03-22'
 ---
 Midjourney是一款功能强大的AI绘画工具，可以绘制出多种风格的作品。下面是使用Midjourney绘制超可爱的精灵女孩的详细教程。

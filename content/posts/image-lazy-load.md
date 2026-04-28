@@ -25,15 +25,15 @@ date: '2017-02-01 18:56:40 +0800'
 
 ```pug
 div#lazy-img
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
-  img(data-src="{{site.baseurl}}/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
+  img(data-src="/assets/img/9c61bc16-ae02-4f06-a8aa-0501db51eadb.png")
 ```
 
 ```css

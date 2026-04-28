@@ -7,7 +7,6 @@ description: >-
   code in today’s world is like learning to read and write or more like learnin
 tags:
   - why code
-img: c2ab5275-4674-4fbe-a3d9-094782fedbd3.png
 date: '2017-02-01 17:47:44 +0800'
 ---
 很久以前看到的一篇文章，今天找出来转载一下，出处忘记了。找了半天也没找到，如果谁有相关资料可以告诉我，我写上去。

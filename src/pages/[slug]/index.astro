@@ -46,6 +46,11 @@ function formatDate(dateStr: string): string {
       <span>{formatDate(post.date)}</span>
       <span>{readTime(post.body)} min read</span>
     </div>
+    {post.img && (
+      <div class="post-cover">
+        <img src={post.img} alt={post.title} />
+      </div>
+    )}
   </header>
 
   <main class="post-page">

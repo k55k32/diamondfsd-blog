@@ -11,7 +11,6 @@ tags:
   - hook教程
   - react hook教程
   - what's hook
-img: react-hooks.png
 date: '2021-01-01'
 ---
 ## 什么是hooks

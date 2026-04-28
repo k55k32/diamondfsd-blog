@@ -10,7 +10,6 @@ tags:
   - github
   - oauth2
   - 第三方登录
-img: 481317de-cb79-4bb1-8f87-e27e4a09cbaf.jpg
 date: '2017-04-27 18:31:42 +0800'
 ---
 现在很多站点都支持第三方登录功能。
@@ -40,7 +39,7 @@ OAuth 协议的认证和授权的过程如下：
 3. 填入基本的app信息
 4. 创建成功，会有如下页面
 
-![alt]({{site.baseurl}}/assets/img/256e7ad0-6206-45bb-bdf6-c7d58857f3edm)
+[图片已迁移]
 
 这里的各项配置具体的作用，我们还是看一看GitHub提供的文档 [OAuth GitHub Developer Guide](https://developer.github.com/v3/oauth/)
 

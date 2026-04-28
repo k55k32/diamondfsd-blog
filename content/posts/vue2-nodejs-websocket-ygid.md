@@ -17,7 +17,7 @@ date: '2017-02-21 20:42:20 +0800'
 
 大家可以拉上一两个人，来开个房间试试看，体验体验效果。
 [http://yd.diamondfsd.com](http://yd.diamondfsd.com)
-![alt]({{site.baseurl}}/assets/img/ddeea735-598e-4e1e-b262-2d133f813303-)
+[图片已迁移]
 
 主要实现了以下这些功能
 
@@ -27,7 +27,7 @@ date: '2017-02-21 20:42:20 +0800'
 暂时不支持上传头像，头像用昵称第一个字母代替
 暂时使用 `localStorage` 储存基本基本个人信息（昵称,token等）
 实施更新房间列表，在线人数等信息
-![alt]({{site.baseurl}}/assets/img/292c2c29-44b1-45fd-b9dc-7a2f69953c78n)
+[图片已迁移]
 
 **创建游戏房间**
 房间名称:
@@ -41,17 +41,17 @@ date: '2017-02-21 20:42:20 +0800'
 后期可加入观战功能
 当游戏人数大于等于2或者以上的时候，可以开始游戏。
 房间内可以聊天，默认第一个进入房间的人是房主，房主可以开始游戏。
-![alt]({{site.baseurl}}/assets/img/042c9bd1-1c7b-49c1-8b46-d3e987869d178)
+[图片已迁移]
 
 ## 游戏主功能
 使用 `canvas` 做画布，通过`websocket`实时发送动作，全图数据来实现动态笔迹，和最终图片一致性。
 可以修改画笔颜色，粗细，进行撤销，恢复，清空等操作。
-![alt]({{site.baseurl}}/assets/img/a425d560-e7de-4c20-ab1c-9e1f9b868690d)
-![alt]({{site.baseurl}}/assets/img/5c373f24-32da-4766-b96b-ac0f8a184b37B)
+[图片已迁移]
+[图片已迁移]
 每轮游戏结束后公布答案，预置了一些快捷短语可以恢复。 游戏过程中 作画者 不可以发文字聊天，其他玩家通过发文字猜答案。
 第一个猜对的 3 分， 第二个猜对的 2 分。 剩下猜对的1分。 第一个猜完后，游戏时间缩短为 30 秒。每个人猜对后，作画者+1分
 
-![alt]({{site.baseurl}}/assets/img/39b12c5f-d08a-41f9-a80d-9f32b0b22c6eP)
+[图片已迁移]
 
 ## 项目结构
 这个游戏由两个项目组成，一个是前端，一个是服务端
@@ -71,7 +71,7 @@ WebSocket 服务端  [github-ydig-websocket](https://github.com/k55k32/ydig-webs
 前端: [github-you-draw-i-guess](https://github.com/k55k32/you-draw-i-guess)
 WebSocket 服务端:  [github-ydig-websocket](https://github.com/k55k32/ydig-websocket)
 在线演示地址: [http://yd.diamondfsd.com](http://yd.diamondfsd.com)
-在线演示二维码: ![alt]({{site.baseurl}}/assets/img/ddeea735-598e-4e1e-b262-2d133f813303-)
+在线演示二维码: [图片已迁移]
 
 个人博客: [https://diamondfsd.com](https://diamondfsd.com)
 

@@ -12,7 +12,6 @@ tags:
   - nodejs生成sitemap.xml
   - sitemap.js教程
   - seo优化
-img: 9773977c-0db1-464a-ae32-c7bf92da12f5.png
 date: '2017-01-19 14:33:31 +0800'
 ---
 主要讲一下如何用Nodejs + express + sitemap.js 来动态生成 `sitemap.xml`。

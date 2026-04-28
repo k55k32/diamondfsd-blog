@@ -641,6 +641,19 @@ img {
   color: var(--outline);
 }
 
+.post-cover {
+  margin-top: 2rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.post-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
