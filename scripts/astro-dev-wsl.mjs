@@ -7,7 +7,7 @@ const mirrorDir = path.join(os.tmpdir(), "diamondfsd-blog-dev");
 const syncIntervalMs = 2000;
 const installInputs = [
   "package.json",
-  "pnpm-lock.yaml",
+  "npm-lock.yaml",
   "astro.config.mjs",
   "tsconfig.json"
 ].map((entry) => path.join(sourceDir, entry));
@@ -77,7 +77,7 @@ async function ensureDependencies() {
   }
 
   console.log("[astro-dev-wsl] installing mirror dependencies...");
-  await run("pnpm", ["install", "--frozen-lockfile"], { cwd: mirrorDir });
+  await run("npm", ["install", "--frozen-lockfile"], { cwd: mirrorDir });
   installFingerprint = nextFingerprint;
 }
 
@@ -87,7 +87,7 @@ function startAstro() {
   }
 
   console.log("[astro-dev-wsl] starting Astro dev at http://127.0.0.1:4321/");
-  astroProcess = spawn("pnpm", ["exec", "astro", "dev", "--host", "127.0.0.1", "--port", "4321"], {
+  astroProcess = spawn("npm", ["exec", "astro", "dev", "--host", "127.0.0.1", "--port", "4321"], {
     cwd: mirrorDir,
     stdio: "inherit",
     shell: true,

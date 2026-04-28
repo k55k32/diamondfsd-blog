@@ -24,13 +24,13 @@ npm install
 Run the dev server:
 
 ```bash
-pnpm dev
+npm dev
 ```
 
 WSL note:
 
 - This repository lives under `/mnt/c/...`, and native `astro dev` can stall on Windows-mounted filesystems.
-- `pnpm dev` now starts a real Astro dev server from a Linux mirror under `/tmp/diamondfsd-blog-dev`, then keeps source changes synced from the current repo.
+- `npm dev` now starts a real Astro dev server from a Linux mirror under `/tmp/diamondfsd-blog-dev`, then keeps source changes synced from the current repo.
 - Open `http://127.0.0.1:4321/` in your browser.
 - The first startup is slower because the mirror installs dependencies once. Later starts are faster.
 
