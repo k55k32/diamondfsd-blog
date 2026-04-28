@@ -3,24 +3,40 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { PostRecord } from "../types/post";
 
+const IMAGE_EXTS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".avif"]);
+
 function extractImgPath(raw?: string): string | undefined {
   if (!raw) return undefined;
   const match = raw.match(/!\[.*?\]\((.+?)\)/);
   return match ? match[1] : raw;
 }
 
-async function resolveImg(slug: string, rawImg?: string): Promise<string | undefined> {
+/** Copy all images from content/posts/ to public/post-images/ */
+async function syncContentImages(): Promise<void> {
+  const srcDir = path.resolve("content/posts");
+  const destDir = path.resolve("public/post-images");
+  await fs.mkdir(destDir, { recursive: true });
+
+  const entries = await fs.readdir(srcDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isFile() && IMAGE_EXTS.has(path.extname(entry.name).toLowerCase())) {
+      await fs.copyFile(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+    }
+  }
+}
+
+function resolveBodyImages(body: string): string {
+  return body.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
+    if (/^https?:\/\//.test(src) || src.startsWith("/")) return match;
+    return `![${alt}](/post-images/${src})`;
+  });
+}
+
+async function resolveCoverImg(rawImg?: string): Promise<string | undefined> {
   const filename = extractImgPath(rawImg);
   if (!filename) return undefined;
-
-  const srcPath = path.resolve("content/posts", filename);
-  const destDir = path.resolve("public/post-images");
-  const destPath = path.join(destDir, filename);
-
   try {
-    await fs.access(srcPath);
-    await fs.mkdir(destDir, { recursive: true });
-    await fs.copyFile(srcPath, destPath);
+    await fs.access(path.resolve("content/posts", filename));
     return `/post-images/${filename}`;
   } catch {
     return undefined;
@@ -28,6 +44,8 @@ async function resolveImg(slug: string, rawImg?: string): Promise<string | undef
 }
 
 export async function getAllPosts(): Promise<PostRecord[]> {
+  await syncContentImages();
+
   const entries = await getCollection("posts", ({ data }) => !data.draft);
 
   const posts = await Promise.all(
@@ -36,10 +54,10 @@ export async function getAllPosts(): Promise<PostRecord[]> {
       title: entry.data.title,
       description: entry.data.description,
       tags: entry.data.tags,
-      img: await resolveImg(entry.id, entry.data.img),
+      img: await resolveCoverImg(entry.data.img),
       draft: entry.data.draft,
       date: entry.data.date,
-      body: entry.body ?? "",
+      body: resolveBodyImages(entry.body ?? ""),
     }))
   );
 
